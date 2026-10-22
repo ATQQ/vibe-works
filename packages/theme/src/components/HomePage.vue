@@ -3,6 +3,7 @@ import { NButton } from 'naive-ui'
 import { useData } from 'vitepress'
 import { computed } from 'vue'
 import type { CatalogItem, HomeCopy } from '../types'
+import HeroMarquee from './HeroMarquee.vue'
 import ProductCard from './ProductCard.vue'
 import QuotePanel from './QuotePanel.vue'
 
@@ -17,11 +18,8 @@ const home = computed(() => (frontmatter.value.home ?? {}) as HomeCopy)
 const stage = computed(() =>
   [...props.catalog]
     .filter((item) => item.catalog === 'work')
-    .sort((a, b) => a.order - b.order)
-    .slice(0, 6),
+    .sort((a, b) => a.order - b.order),
 )
-const leftCards = computed(() => stage.value.filter((_, index) => index % 2 === 0))
-const rightCards = computed(() => stage.value.filter((_, index) => index % 2 === 1))
 const featured = computed(() =>
   [...props.catalog]
     .filter((item) => item.featured)
@@ -75,14 +73,7 @@ const featured = computed(() =>
             </li>
           </ul>
         </div>
-        <div class="vw-hero-stage" aria-label="精选作品">
-          <div class="vw-hero-col">
-            <ProductCard v-for="item in leftCards" :key="item.url" :item="item" variant="mini" />
-          </div>
-          <div class="vw-hero-col">
-            <ProductCard v-for="item in rightCards" :key="item.url" :item="item" variant="mini" />
-          </div>
-        </div>
+        <HeroMarquee :items="stage" />
       </div>
     </section>
 
