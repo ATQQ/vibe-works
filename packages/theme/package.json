@@ -1,0 +1,49 @@
+{
+  "name": "@vibe-works/vitepress-theme",
+  "version": "0.1.0",
+  "description": "VitePress theme for a light catalog of works and paid-tool placeholders. Chinese-first, Naive UI, SSG-ready.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "src",
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./style.css": "./src/styles/index.css",
+    "./config": {
+      "types": "./src/config.ts",
+      "import": "./dist/config.js"
+    }
+  },
+  "scripts": {
+    "build": "vue-tsc --noEmit && vite build && node scripts/build-config.mjs",
+    "typecheck": "vue-tsc --noEmit",
+    "build:config": "node scripts/build-config.mjs"
+  },
+  "peerDependencies": {
+    "vitepress": ">=1.6.0",
+    "vue": "^3.5.0"
+  },
+  "dependencies": {
+    "@css-render/vue3-ssr": "^0.15.14",
+    "@fontsource-variable/bricolage-grotesque": "^5.2.8",
+    "naive-ui": "^2.43.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.9",
+    "vitepress": "next",
+    "vue": "^3.5.22",
+    "vue-tsc": "^3.1.1"
+  }
+}

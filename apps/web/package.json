@@ -1,0 +1,20 @@
+{
+  "name": "web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "pnpm --filter @vibe-works/vitepress-theme build:config",
+    "dev": "vitepress dev --host 127.0.0.1 --port 4391",
+    "prebuild": "pnpm --filter @vibe-works/vitepress-theme build:config",
+    "build": "vitepress build",
+    "preview": "vitepress preview --host 127.0.0.1 --port 4391"
+  },
+  "dependencies": {
+    "@vibe-works/vitepress-theme": "workspace:*",
+    "vue": "^3.5.22"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitepress": "next"
+  }
+}
