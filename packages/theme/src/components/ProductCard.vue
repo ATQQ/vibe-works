@@ -2,6 +2,7 @@
 import { NTag } from 'naive-ui'
 import type { CatalogItem } from '../types'
 import CoverArt from './CoverArt.vue'
+import PlatformBadges from './PlatformBadges.vue'
 
 withDefaults(
   defineProps<{
@@ -33,9 +34,7 @@ withDefaults(
       </div>
       <h3>{{ item.title }}</h3>
       <p class="vw-clamp">{{ item.summary }}</p>
-      <div v-if="item.platforms?.length" class="vw-platforms">
-        <span v-for="platform in item.platforms" :key="platform">{{ platform }}</span>
-      </div>
+      <PlatformBadges :platforms="item.platforms" />
     </div>
   </a>
 
@@ -59,9 +58,7 @@ withDefaults(
       </div>
       <h3>{{ item.title }}</h3>
       <p class="vw-clamp">{{ item.summary }}</p>
-      <div v-if="item.platforms?.length" class="vw-platforms">
-        <span v-for="platform in item.platforms" :key="platform">▣ {{ platform }}</span>
-      </div>
+      <PlatformBadges :platforms="item.platforms" />
       <div v-if="item.tags.length" class="vw-tags">
         <NTag
           v-for="tag in item.tags"

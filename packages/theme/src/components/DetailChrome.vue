@@ -2,7 +2,8 @@
 import { NButton, NModal, NTag } from 'naive-ui'
 import { useData } from 'vitepress'
 import { computed, ref } from 'vue'
-import type { ActionItem } from '../types'
+import type { ActionItem, PlatformInput } from '../types'
+import PlatformBadges from './PlatformBadges.vue'
 import { resolveSocialSvg, socialSvgs } from './SocialIcons'
 
 const { frontmatter } = useData()
@@ -14,7 +15,7 @@ const category = computed(() => String(page.value.category ?? ''))
 const accent = computed(() => String(page.value.accent ?? 'mint'))
 const icon = computed(() => (page.value.icon ? String(page.value.icon) : ''))
 const platforms = computed(() =>
-  Array.isArray(page.value.platforms) ? page.value.platforms.map(String) : [],
+  Array.isArray(page.value.platforms) ? (page.value.platforms as PlatformInput[]) : [],
 )
 const tags = computed(() => (Array.isArray(page.value.tags) ? page.value.tags.map(String) : []))
 const actions = computed(() => (Array.isArray(page.value.actions) ? (page.value.actions as ActionItem[]) : []))
@@ -79,9 +80,7 @@ function runAction(action: ActionItem) {
               <ul v-if="meta.length" class="vw-meta">
                 <li v-for="item in meta" :key="item">{{ item }}</li>
               </ul>
-              <div v-if="platforms.length" class="vw-platforms" style="margin-top: 8px">
-                <span v-for="platform in platforms" :key="platform">▣ {{ platform }}</span>
-              </div>
+              <PlatformBadges v-if="platforms.length" :platforms="platforms" style="margin-top: 8px" />
               <div v-if="tags.length" class="vw-detail-tags">
                 <NTag v-for="tag in tags" :key="tag" size="small" round :bordered="false">
                   {{ tag }}

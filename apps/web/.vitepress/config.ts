@@ -1,35 +1,78 @@
 import { withThemeConfig } from '@vibe-works/vitepress-theme/config'
 
 export default withThemeConfig({
-  title: 'Vibe works',
+  title: 'Vibe+开源作品',
   description: '作品展示与介绍。',
   themeConfig: {
-    brand: 'Vibe works',
+    brand: 'Vibe+开源作品',
     caption: '作品展示',
     nav: [
       { text: '首页', link: '/' },
       { text: '全部', link: '/works/' },
     ],
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/ATQQ/sugar-blog' },
+      { icon: 'github', link: 'https://github.com/ATQQ' },
       { icon: 'x', link: 'https://x.com/Mr_XiaoZou' },
     ],
     footerNote: '展示做过的作品，并链到独立站点与开源仓库。',
-    footerColumns: [
+    footerChannelsLabel: '关注我',
+    footerChannels: [
       {
-        title: '目录',
-        links: [
-          { text: '首页', link: '/' },
-          { text: '全部', link: '/works/' },
-        ],
+        icon: 'wechat',
+        label: '公众号',
+        // qrImage: 'https://example.com/wechat-qr.png', // 优先用图片
+        qrContent: 'https://sugarat.top',
+        qrTitle: '关注公众号',
       },
       {
-        title: '外链',
+        icon: 'bilibili',
+        label: 'Bilibili',
+        link: 'https://space.bilibili.com',
+        qrContent: 'https://space.bilibili.com',
+        qrTitle: 'B站主页',
+      },
+      {
+        icon: 'xiaohongshu',
+        label: '小红书',
+        qrContent: 'https://www.xiaohongshu.com',
+        qrTitle: '小红书',
+      },
+      {
+        icon: 'douyin',
+        label: '抖音',
+        qrContent: 'https://www.douyin.com',
+        qrTitle: '抖音',
+      },
+    ],
+    footerColumns: [
+      // {
+      //   title: '目录',
+      //   links: [
+      //     { text: '首页', link: '/' },
+      //     { text: '全部', link: '/works/' },
+      //   ],
+      // },
+      {
+        title: '可以在这些地方找到我',
         links: [
-          { text: 'GitHub', link: 'https://github.com/ATQQ/sugar-blog' },
+          { text: 'GitHub', link: 'https://github.com/ATQQ' },
           { text: '博客', link: 'https://sugarat.top' },
         ],
       },
     ],
+    footerBar: {
+      copyright: {
+        text: '© 2026 粥里有勺糖',
+        link: 'https://sugarat.top',
+      },
+      // beian: {
+      //   text: '京ICP备xxxxxxxx号',
+      //   link: 'https://beian.miit.gov.cn/',
+      // },
+      links: [
+        // { text: '博客', link: 'https://sugarat.top' },
+        // { text: 'GitHub', link: 'https://github.com/ATQQ' },
+      ],
+    },
   },
 })

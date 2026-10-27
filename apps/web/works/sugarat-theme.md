@@ -15,6 +15,9 @@ actions:
   - label: 访问站点
     icon: link
     href: https://theme.sugarat.top
+  - label: 访问博客
+    icon: link
+    href: https://sugarat.top
   - label: GitHub
     icon: github
     href: https://github.com/ATQQ/sugar-blog

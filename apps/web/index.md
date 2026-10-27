@@ -3,8 +3,8 @@ title: Vibe works
 description: 作品展示与介绍。
 home:
   eyebrow: Vibe works
-  title: 做过的作品，摊开给你看。
-  lede: 产品、开源工具与主题都在这里。点进详情看介绍，再去独立站点或 GitHub。
+  title: 能玩的作品，都在这里
+  lede: APP、CLI、网站、都有。部分 GitHub 开源。
   primary:
     text: 浏览全部
     link: /works/
@@ -12,7 +12,7 @@ home:
     text: GitHub
     link: https://github.com/ATQQ/sugar-blog
   checks:
-    - 10 件作品
+    - 9 件作品
     - 纯静态，无账号
     - 外链到站点与仓库
   perks:
@@ -28,7 +28,7 @@ home:
     - icon: shield
       title: 想聊能联系
       text: 联系 / 购买等 CTA 可自定义弹窗。
-  featuredTitle: 作品
+  featuredTitle: 精选作品
   featuredLede: 瞧一瞧，看一看。
   # closingTitle: 想看完整列表？
   # closingLede: 「全部」页支持搜索和按分类筛选。

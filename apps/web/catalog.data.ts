@@ -1,5 +1,14 @@
 import { createContentLoader } from 'vitepress'
 
+export type PlatformInput =
+  | string
+  | {
+      label?: string
+      text?: string
+      icon?: string
+      svg?: string
+    }
+
 export interface CatalogItem {
   url: string
   title: string
@@ -7,13 +16,32 @@ export interface CatalogItem {
   catalog: 'work' | 'service'
   category: string
   recommend?: boolean
-  platforms: string[]
+  platforms: PlatformInput[]
   accent: string
   icon?: string
   cover?: string
   tags: string[]
   featured?: boolean
   order: number
+}
+
+function normalizePlatforms(raw: unknown): PlatformInput[] {
+  if (!Array.isArray(raw)) return []
+  return raw
+    .map((item) => {
+      if (typeof item === 'string' || typeof item === 'number') return String(item)
+      if (item && typeof item === 'object') {
+        const obj = item as Record<string, unknown>
+        return {
+          label: obj.label != null ? String(obj.label) : obj.text != null ? String(obj.text) : undefined,
+          text: obj.text != null ? String(obj.text) : undefined,
+          icon: obj.icon != null ? String(obj.icon) : undefined,
+          svg: obj.svg != null ? String(obj.svg) : undefined,
+        }
+      }
+      return null
+    })
+    .filter((item): item is PlatformInput => item != null)
 }
 
 declare const data: CatalogItem[]
@@ -32,7 +60,7 @@ export default createContentLoader('**/*.md', {
           catalog: frontmatter.catalog === 'service' ? 'service' : 'work',
           category: String(frontmatter.category ?? ''),
           recommend: Boolean(frontmatter.recommend),
-          platforms: Array.isArray(frontmatter.platforms) ? frontmatter.platforms.map(String) : [],
+          platforms: normalizePlatforms(frontmatter.platforms),
           accent: String(frontmatter.accent ?? 'mint'),
           icon: frontmatter.icon ? String(frontmatter.icon) : undefined,
           cover: frontmatter.cover ? String(frontmatter.cover) : undefined,

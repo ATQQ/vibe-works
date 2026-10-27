@@ -1,3 +1,7 @@
+import type { PlatformInput } from './platforms'
+
+export type { PlatformInput }
+
 export interface CatalogStats {
   downloads: string
   views: string
@@ -12,7 +16,7 @@ export interface CatalogItem {
   catalog: 'work' | 'service'
   category: string
   recommend?: boolean
-  platforms: string[]
+  platforms: PlatformInput[]
   accent: string
   icon?: string
   cover?: string
@@ -91,6 +95,43 @@ export interface ServicesCopy {
   quoteTotal?: QuoteLine
 }
 
+/** Footer bottom-bar text; optional link. */
+export interface FooterTextLink {
+  text: string
+  link?: string
+}
+
+/**
+ * Separate strip under footer nav columns.
+ * Left: copyright · Center: beian · Right: extra links.
+ */
+export interface FooterBar {
+  /** Fully custom; does not fall back to site title. */
+  copyright?: string | FooterTextLink
+  /** ICP / 备案等 */
+  beian?: string | FooterTextLink
+  links?: LinkItem[]
+}
+
+/**
+ * Footer brand-column social channels (抖音 / B站 / 小红书 / 公众号…).
+ * Hover shows QR: `qrImage` or generate from `qrContent`.
+ */
+export interface FooterChannel {
+  /** Built-in key, or `{ src }` / `{ svg }` for custom logo */
+  icon?: string | { src?: string; svg?: string }
+  /** Accessible name; also used when icon is custom */
+  label?: string
+  /** Optional click-through when not only QR */
+  link?: string
+  /** Text/URL encoded into a QR image */
+  qrContent?: string
+  /** Direct QR image URL; wins over qrContent */
+  qrImage?: string
+  /** Caption under the QR in the hover card */
+  qrTitle?: string
+}
+
 export interface VibeThemeConfig {
   brand?: string
   caption?: string
@@ -99,4 +140,9 @@ export interface VibeThemeConfig {
   socialLinks?: SocialLink[]
   footerNote?: string
   footerColumns?: { title: string; links: LinkItem[] }[]
+  /** Under brand blurb: channel icons with optional QR hover */
+  footerChannels?: FooterChannel[]
+  /** Small label before channel icons, e.g. 「关注我」 */
+  footerChannelsLabel?: string
+  footerBar?: FooterBar
 }

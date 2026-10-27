@@ -14,11 +14,17 @@ export type {
   ActionItem,
   CatalogItem,
   CatalogCopy,
+  FooterBar,
+  FooterChannel,
+  FooterTextLink,
   HomeCopy,
   HomePerk,
+  PlatformInput,
   SocialLink,
   VibeThemeConfig,
 } from './types'
+
+export { resolvePlatform, resolvePlatforms, platformIcons } from './platforms'
 
 export { withThemeConfig } from './config'
 

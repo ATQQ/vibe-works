@@ -28,6 +28,31 @@ export default withThemeConfig({
     footerColumns: [
       { title: '目录', links: [{ text: '全部', link: '/works/' }] },
     ],
+    // 品牌说明下的渠道：小标题 + 横向图标；hover 出二维码
+    footerChannelsLabel: '关注我',
+    footerChannels: [
+      {
+        icon: 'wechat', // douyin | bilibili | xiaohongshu | wechat / 公众号
+        qrImage: 'https://example.com/qr.png', // 或 qrContent: 'https://...'
+        qrTitle: '关注公众号',
+      },
+      {
+        icon: { src: '/my-logo.png' }, // 自定义 logo
+        label: '自定义',
+        qrContent: 'https://example.com',
+        qrTitle: '扫码关注',
+        link: 'https://example.com',
+      },
+    ],
+    // 与上方导航列分开的底栏：左版权 · 中备案 · 右链接
+    footerBar: {
+      copyright: { text: '© 2026 你的名字', link: 'https://example.com' },
+      beian: { text: '京ICP备xxxxxxxx号', link: 'https://beian.miit.gov.cn/' },
+      links: [
+        { text: '隐私政策', link: '/privacy' },
+        { text: '服务条款', link: '/terms' },
+      ],
+    },
   },
 })
 ```
@@ -81,6 +106,23 @@ actions:
 ```
 
 常用字段：`catalog`（`work` | `service`）、`summary`、`category`、`platforms`、`accent`（`mint` `amber` `sea` `lilac` `clay` `ink`）、`icon`、`tags`、`featured`、`order`、`actions`。
+
+`platforms` 支持字符串自动匹配图标，或对象自定义。内置 logo 来自 Google / Devicon / MingCute / Simple Icons 等现成资源（见 `src/assets/platforms/SOURCES.md`）：
+
+```yaml
+platforms:
+  - Web          # → Chrome 官方标
+  - CLI          # → 终端
+  - Windows
+  - macOS
+  - iOS
+  - Android
+  - 小程序       # → MingCute 小程序标
+  - label: 自研端
+    icon: desktop
+  - label: 特殊
+    src: /my-icon.svg
+```
 
 ## 发布
 
