@@ -1286,13 +1286,24 @@ html.dark img.vw-platform-icon[src*='apple'] {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  align-items: center;
+  align-items: flex-start;
   margin: 18px 0 20px;
 }
 
 .vw-filters .n-input { max-width: 320px; }
 
+.vw-filter-rows {
+  display: grid;
+  gap: 10px;
+  flex: 1;
+  min-width: min(100%, 280px);
+}
+
 .vw-cats { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.vw-tags-filter .n-button {
+  font-weight: 500;
+}
 
 .vw-result-meta {
   margin: 0 0 14px;

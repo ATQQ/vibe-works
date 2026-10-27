@@ -8,7 +8,7 @@ platforms: [Windows, macOS, Android]
 accent: lilac
 icon: https://photo.sugarat.top/favicon.ico
 cover: /covers/echo-trails.png
-tags: [相册应用, Vue, Tauri2]
+tags: [Bun, Vue, Tauri, 开源]
 order: 60
 actions:
   - label: GitHub

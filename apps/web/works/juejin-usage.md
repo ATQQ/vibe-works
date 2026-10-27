@@ -8,7 +8,7 @@ platforms: [Windows, macOS, CLI]
 accent: sea
 icon: /icons/juejin-usage.png
 cover: /covers/juejin-usage.png
-tags: [工具, 桌面应用]
+tags: [React, Electron, Tauri, 开源]
 featured: 3
 order: 30
 actions:

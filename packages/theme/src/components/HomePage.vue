@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NButton } from 'naive-ui'
 import { useData } from 'vitepress'
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import type { CatalogItem, HomeCopy } from '../types'
 import HeroMarquee from './HeroMarquee.vue'
 import ProductCard from './ProductCard.vue'
@@ -13,7 +13,6 @@ const props = withDefaults(defineProps<{ catalog?: CatalogItem[] }>(), {
 const { frontmatter } = useData()
 
 const home = computed(() => (frontmatter.value.home ?? {}) as HomeCopy)
-const worksTab = ref<'featured' | 'all'>('featured')
 
 const stage = computed(() =>
   [...props.catalog]
@@ -25,7 +24,6 @@ const featured = computed(() =>
     .filter((item) => item.featured != null)
     .sort((a, b) => (a.featured ?? 0) - (b.featured ?? 0)),
 )
-const shown = computed(() => (worksTab.value === 'featured' ? featured.value : stage.value))
 
 const perkIcons: Record<string, string> = {
   filter:
@@ -114,30 +112,10 @@ function perkIcon(icon: string | undefined, index: number) {
             <h2>{{ home.featuredTitle || '作品' }}</h2>
             <p>{{ home.featuredLede }}</p>
           </div>
-          <a class="vw-more" href="/works/">全部 →</a>
-        </div>
-        <div class="vw-cats" style="margin-bottom: 16px">
-          <NButton
-            size="small"
-            round
-            :type="worksTab === 'featured' ? 'primary' : 'default'"
-            :secondary="worksTab !== 'featured'"
-            @click="worksTab = 'featured'"
-          >
-            精选
-          </NButton>
-          <NButton
-            size="small"
-            round
-            :type="worksTab === 'all' ? 'primary' : 'default'"
-            :secondary="worksTab !== 'all'"
-            @click="worksTab = 'all'"
-          >
-            所有作品
-          </NButton>
+          <a class="vw-more" href="/works/">全部作品 →</a>
         </div>
         <div class="vw-grid">
-          <ProductCard v-for="item in shown" :key="item.url" :item="item" />
+          <ProductCard v-for="item in featured" :key="item.url" :item="item" />
         </div>
       </div>
     </section>

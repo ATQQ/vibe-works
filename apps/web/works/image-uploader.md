@@ -8,7 +8,7 @@ platforms: [Web]
 accent: amber
 icon: /icons/uploader.svg
 cover: /covers/image-uploader.png
-tags: [image, uploader]
+tags: [Vue, Nuxt, 开源]
 order: 90
 actions:
   - label: 访问站点

@@ -8,7 +8,7 @@ platforms: [Web]
 accent: amber
 icon: https://theme.sugarat.top/logo.png
 cover: /covers/sugarat-theme.png
-tags: [Vitepress, Vue, Theme]
+tags: [Vitepress, Vue, 开源]
 featured: 4
 order: 40
 actions:

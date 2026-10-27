@@ -8,7 +8,7 @@ platforms: [Web, Android, 小程序]
 accent: mint
 icon: https://miaowa.sugarat.top/favicon.ico
 cover: /covers/miaowa.png
-tags: [工具, APP]
+tags: [小程序, Vue]
 featured: 2
 order: 20
 actions:

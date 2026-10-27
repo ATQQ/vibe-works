@@ -8,7 +8,7 @@ platforms: [CLI, Web]
 accent: mint
 icon: https://docs.kite.sugarat.top/logo.svg
 cover: /covers/kite.png
-tags: [TypeScript, Node.js, Bun]
+tags: [Node.js, Bun, 开源]
 featured: 6
 order: 70
 actions:

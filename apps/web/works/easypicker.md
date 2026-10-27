@@ -8,7 +8,7 @@ platforms: [Web]
 accent: sea
 icon: https://docs.ep.sugarat.top/logo.png
 cover: /covers/easypicker.png
-tags: [Vue, 工具]
+tags: [Vue, Node.js, 开源]
 featured: 5
 order: 50
 actions:

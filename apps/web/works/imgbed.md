@@ -8,7 +8,7 @@ platforms: [Web]
 accent: clay
 icon: https://imgbed.sugarat.top/favicon.ico
 cover: /covers/imgbed.png
-tags: [Vue, 工具]
+tags: [Vue, 开源]
 order: 80
 actions:
   - label: 访问站点

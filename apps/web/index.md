@@ -17,12 +17,12 @@ home:
   #   - 外链到站点与仓库
   perks:
     - icon: filter
-      title: 类型不少
-      text: App、CLI、网站与主题都有，按兴趣挑着看。
+      title: 啥都有
+      text: App、CLI、Web应用都有。
     - icon: play
-      title: 能打开试用
+      title: 直接体验
       text: 多数有线上地址，点进去就能上手玩。
-    - icon: link
+    - icon:
       title: 大部分开源
       text: 欢迎 Star、Fork、PR。
     - icon: chat

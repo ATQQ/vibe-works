@@ -8,7 +8,7 @@ platforms: [Chrome]
 accent: clay
 icon: /icons/md2xarticle.png
 cover: /covers/md2xarticle.png
-tags: [Chrome 扩展, Markdown, X]
+tags: [Chrome, 开源]
 featured: 1
 order: 10
 actions:
