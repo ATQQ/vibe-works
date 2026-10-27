@@ -127,7 +127,7 @@ export interface FooterChannel {
   icon?: string | { src?: string; svg?: string }
   /** Accessible name; also used when icon is custom */
   label?: string
-  /** Optional click-through when not only QR */
+  /** Optional click-through; works together with QR hover */
   link?: string
   /** Text/URL encoded into a QR image */
   qrContent?: string
@@ -135,6 +135,18 @@ export interface FooterChannel {
   qrImage?: string
   /** Caption under the QR in the hover card */
   qrTitle?: string
+}
+
+/** Rightmost footer column: always-visible contact QR (e.g. 微信). */
+export interface FooterContact {
+  /** Column heading, e.g. 「联系我」 */
+  title?: string
+  /** Direct QR image URL; wins over qrContent */
+  qrImage?: string
+  /** Text/URL encoded into a QR image */
+  qrContent?: string
+  /** Optional caption under the QR */
+  note?: string
 }
 
 export interface VibeThemeConfig {
@@ -153,5 +165,7 @@ export interface VibeThemeConfig {
   footerChannels?: FooterChannel[]
   /** Small label before channel icons, e.g. 「关注我」 */
   footerChannelsLabel?: string
+  /** Rightmost column: contact QR */
+  footerContact?: FooterContact
   footerBar?: FooterBar
 }

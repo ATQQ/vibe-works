@@ -27,30 +27,35 @@ export default withThemeConfig({
       {
         icon: 'wechat',
         label: '公众号',
-        // qrImage: 'https://example.com/wechat-qr.png', // 优先用图片
-        qrContent: 'https://sugarat.top',
+        qrImage: '/wechat-qr.png',
         qrTitle: '关注公众号',
       },
       {
         icon: 'bilibili',
         label: 'Bilibili',
-        link: 'https://space.bilibili.com',
-        qrContent: 'https://space.bilibili.com',
+        link: 'https://space.bilibili.com/169511987',
+        qrContent: 'https://space.bilibili.com/169511987',
         qrTitle: 'B站主页',
       },
       {
         icon: 'xiaohongshu',
         label: '小红书',
-        qrContent: 'https://www.xiaohongshu.com',
+        link: 'https://www.xiaohongshu.com/user/profile/641327dc000000001102206e',
+        qrContent: 'https://www.xiaohongshu.com/user/profile/641327dc000000001102206e',
         qrTitle: '小红书',
       },
       {
         icon: 'douyin',
         label: '抖音',
-        qrContent: 'https://www.douyin.com',
+        link: 'https://v.douyin.com/OVyq9nzuXhM/',
+        qrContent: 'https://v.douyin.com/OVyq9nzuXhM/',
         qrTitle: '抖音',
       },
     ],
+    footerContact: {
+      title: '绿泡泡联系我',
+      qrImage: '/wechat-qr.png',
+    },
     footerColumns: [
       // {
       //   title: '目录',

@@ -8,26 +8,26 @@ home:
   primary:
     text: 浏览全部
     link: /works/
-  secondary:
-    text: GitHub
-    link: https://github.com/ATQQ/sugar-blog
-  checks:
-    - 9 件作品
-    - 纯静态，无账号
-    - 外链到站点与仓库
+  # secondary:
+  #   text: GitHub
+  #   link: https://github.com/ATQQ/sugar-blog
+  # checks:
+  #   - 9 个作品
+  #   - 纯静态，无账号
+  #   - 外链到站点与仓库
   perks:
     - icon: filter
-      title: 先看作品本身
-      text: 介绍和场景摊开，不用猜适不适合。
-    - icon: doc
-      title: 外链写清楚
-      text: 独立站、GitHub 在详情页一键打开。
+      title: 类型不少
+      text: App、CLI、网站与主题都有，按兴趣挑着看。
     - icon: play
-      title: 打开就能逛
-      text: 纯静态页面，无账号、不收款。
-    - icon: shield
-      title: 想聊能联系
-      text: 联系 / 购买等 CTA 可自定义弹窗。
+      title: 能打开试用
+      text: 多数有线上地址，点进去就能上手玩。
+    - icon: link
+      title: 大部分开源
+      text: 欢迎 Star、Fork、PR。
+    - icon: chat
+      title: 联系我
+      text: 底部有微信二维码。
   featuredTitle: 精选作品
   featuredLede: 瞧一瞧，看一看。
   # closingTitle: 想看完整列表？

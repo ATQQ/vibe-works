@@ -16,6 +16,7 @@ export type {
   CatalogCopy,
   FooterBar,
   FooterChannel,
+  FooterContact,
   FooterTextLink,
   HomeCopy,
   HomePerk,

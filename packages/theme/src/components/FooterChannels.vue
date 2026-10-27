@@ -21,13 +21,13 @@ const title = computed(() => props.label?.trim() || '')
     <ul class="vw-channels" :aria-label="title || '关注渠道'">
       <li v-for="item in items" :key="item.key" class="vw-channel-item">
         <component
-          :is="item.link && !item.qrSrc ? 'a' : 'button'"
+          :is="item.link ? 'a' : 'button'"
           class="vw-channel"
           :class="`is-${item.tone}`"
-          :href="item.link && !item.qrSrc ? item.link : undefined"
-          :type="item.link && !item.qrSrc ? undefined : 'button'"
-          :target="item.link && !item.qrSrc ? '_blank' : undefined"
-          :rel="item.link && !item.qrSrc ? 'noopener noreferrer' : undefined"
+          :href="item.link || undefined"
+          :type="item.link ? undefined : 'button'"
+          :target="item.link ? '_blank' : undefined"
+          :rel="item.link ? 'noopener noreferrer' : undefined"
           :aria-label="item.label"
         >
           <img v-if="item.iconSrc" class="vw-channel-icon" :src="item.iconSrc" alt="" width="18" height="18" />

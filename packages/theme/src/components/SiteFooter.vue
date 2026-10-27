@@ -35,17 +35,31 @@ function asTextLink(value: string | FooterTextLink | undefined): FooterTextLink 
   return { text, link: value.link }
 }
 
+function qrSrcFrom(image?: string, content?: string): string | undefined {
+  const img = image?.trim()
+  if (img) return img
+  const data = content?.trim()
+  if (!data) return undefined
+  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=10&data=${encodeURIComponent(data)}`
+}
+
 const bar = computed(() => config.value.footerBar)
 const copyright = computed(() => asTextLink(bar.value?.copyright))
 const beian = computed(() => asTextLink(bar.value?.beian))
 const barLinks = computed(() => (Array.isArray(bar.value?.links) ? (bar.value!.links as LinkItem[]) : []))
 const showBar = computed(() => Boolean(copyright.value || beian.value || barLinks.value.length))
+
+const contact = computed(() => config.value.footerContact)
+const contactQr = computed(() => qrSrcFrom(contact.value?.qrImage, contact.value?.qrContent))
+const contactTitle = computed(() => contact.value?.title?.trim() || '联系我')
+const contactNote = computed(() => contact.value?.note?.trim() || '')
+const showContact = computed(() => Boolean(contactQr.value))
 </script>
 
 <template>
   <footer class="vw-footer">
     <div class="vw-container vw-footer-main">
-      <div class="vw-footer-grid">
+      <div class="vw-footer-grid" :class="{ 'has-contact': showContact }">
         <div>
           <a
             class="vw-brand"
@@ -67,6 +81,11 @@ const showBar = computed(() => Boolean(copyright.value || beian.value || barLink
               <a :href="link.link">{{ link.text }}</a>
             </li>
           </ul>
+        </div>
+        <div v-if="showContact" class="vw-footer-contact">
+          <h3>{{ contactTitle }}</h3>
+          <img class="vw-footer-contact-qr" :src="contactQr" :alt="contactTitle" width="132" height="132" />
+          <p v-if="contactNote">{{ contactNote }}</p>
         </div>
       </div>
     </div>

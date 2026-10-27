@@ -4,7 +4,7 @@ kind: detail
 catalog: work
 summary: token 用量明细追踪工具，本地记录、云端同步。
 category: 应用
-platforms: [Windows, macOS]
+platforms: [Windows, macOS, CLI]
 accent: sea
 icon: /icons/juejin-usage.png
 cover: /covers/juejin-usage.png
