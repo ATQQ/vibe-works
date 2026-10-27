@@ -3,14 +3,21 @@ import { withThemeConfig } from '@vibe-works/vitepress-theme/config'
 export default withThemeConfig({
   title: 'Vibe+开源作品',
   description: '作品展示与介绍。',
+  head: [
+    ['link', { rel: 'icon', href: '/logo.svg?v=2', type: 'image/svg+xml' }],
+    ['link', { rel: 'apple-touch-icon', href: '/logo.png' }],
+  ],
   themeConfig: {
     brand: 'Vibe+开源作品',
+    logo: '/logo.svg',
+    logoLink: 'https://sugarat.top',
     caption: '作品展示',
     nav: [
       { text: '首页', link: '/' },
       { text: '全部', link: '/works/' },
     ],
     socialLinks: [
+      { icon: '/logo.svg', link: 'https://sugarat.top' },
       { icon: 'github', link: 'https://github.com/ATQQ' },
       { icon: 'x', link: 'https://x.com/Mr_XiaoZou' },
     ],
@@ -53,10 +60,15 @@ export default withThemeConfig({
       //   ],
       // },
       {
-        title: '可以在这些地方找到我',
+        title: '相关链接',
         links: [
           { text: 'GitHub', link: 'https://github.com/ATQQ' },
           { text: '博客', link: 'https://sugarat.top' },
+        ],
+      },
+      {
+        title: '友链（待你加入~）',
+        links: [
         ],
       },
     ],

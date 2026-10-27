@@ -22,6 +22,9 @@ export default withThemeConfig({
     socialLinks: [
       { icon: 'github', link: 'https://github.com/you/repo' },
       { icon: 'x', link: 'https://x.com/you' },
+      // icon 也可用图片：相对路径或 http(s)
+      // { icon: '/icons/juejin.svg', link: 'https://juejin.cn/...', ariaLabel: '掘金' },
+      // { icon: { src: 'https://example.com/logo.png' }, link: 'https://...' },
     ],
     // space 可选；不配则不显示右上角 pill。也可用 Layout 插槽 nav-bar-extra。
     footerNote: '页脚说明。',

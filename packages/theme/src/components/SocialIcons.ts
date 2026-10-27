@@ -10,8 +10,40 @@ export const socialSvgs: Record<string, string> = {
   cart: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M3 4h2l2.2 11h10.4L21 7H7"/></svg>',
 }
 
-export function resolveSocialSvg(icon: string | { svg: string }): string {
-  if (typeof icon === 'object' && icon.svg) return icon.svg
-  const key = String(icon).toLowerCase()
-  return socialSvgs[key] || socialSvgs.link
+export type SocialIconInput = string | { svg?: string; src?: string }
+
+export type ResolvedSocialIcon =
+  | { kind: 'svg'; value: string }
+  | { kind: 'img'; value: string }
+
+function looksLikeIconUrl(value: string): boolean {
+  const v = value.trim()
+  if (!v) return false
+  if (/^https?:\/\//i.test(v)) return true
+  if (v.startsWith('//')) return true
+  if (v.startsWith('/') || v.startsWith('./') || v.startsWith('../')) return true
+  if (v.startsWith('data:image/')) return true
+  return /\.(svg|png|jpe?g|webp|gif|ico)(\?.*)?$/i.test(v)
+}
+
+/** Prefer SVG markup for built-ins; image URL for http(s) / relative paths. */
+export function resolveSocialIcon(icon: SocialIconInput): ResolvedSocialIcon {
+  if (typeof icon === 'object' && icon) {
+    if (icon.src?.trim()) return { kind: 'img', value: icon.src.trim() }
+    if (icon.svg?.trim()) return { kind: 'svg', value: icon.svg }
+  }
+
+  const raw = String(icon ?? '').trim()
+  if (looksLikeIconUrl(raw)) return { kind: 'img', value: raw }
+
+  const key = raw.toLowerCase()
+  return { kind: 'svg', value: socialSvgs[key] || socialSvgs.link }
+}
+
+/** @deprecated Prefer resolveSocialIcon; kept for action buttons expecting SVG markup. */
+export function resolveSocialSvg(icon: SocialIconInput): string {
+  const resolved = resolveSocialIcon(icon)
+  if (resolved.kind === 'svg') return resolved.value
+  // Image URL passed into SVG slot — wrap as <img> via outer caller; fallback glyph here.
+  return socialSvgs.link
 }

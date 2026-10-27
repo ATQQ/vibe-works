@@ -32,7 +32,11 @@ export interface LinkItem {
 }
 
 export interface SocialLink {
-  icon: string | { svg: string }
+  /**
+   * Built-in name (`github` / `x`), image URL (`https://…` / `/icon.png`),
+   * or `{ svg }` / `{ src }`.
+   */
+  icon: string | { svg?: string; src?: string }
   link: string
   ariaLabel?: string
 }
@@ -134,6 +138,10 @@ export interface FooterChannel {
 
 export interface VibeThemeConfig {
   brand?: string
+  /** Brand mark image, e.g. `/logo.png` */
+  logo?: string
+  /** Brand click target; defaults to `/` */
+  logoLink?: string
   caption?: string
   nav?: LinkItem[]
   space?: LinkItem

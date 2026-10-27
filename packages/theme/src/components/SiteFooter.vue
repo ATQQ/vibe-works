@@ -19,6 +19,10 @@ const columns = computed(
       },
     ],
 )
+const brand = computed(() => config.value.brand || site.value.title || 'Vibe works')
+const logo = computed(() => config.value.logo?.trim() || '')
+const logoLink = computed(() => config.value.logoLink?.trim() || '/')
+const logoExternal = computed(() => logoLink.value.startsWith('http'))
 
 function asTextLink(value: string | FooterTextLink | undefined): FooterTextLink | null {
   if (!value) return null
@@ -43,9 +47,15 @@ const showBar = computed(() => Boolean(copyright.value || beian.value || barLink
     <div class="vw-container vw-footer-main">
       <div class="vw-footer-grid">
         <div>
-          <a class="vw-brand" href="/">
-            <BrandMark />
-            <span>{{ config.brand || site.title }}</span>
+          <a
+            class="vw-brand"
+            :href="logoLink"
+            :aria-label="brand"
+            :target="logoExternal ? '_blank' : undefined"
+            :rel="logoExternal ? 'noopener noreferrer' : undefined"
+          >
+            <BrandMark :src="logo || undefined" :alt="brand" />
+            <span>{{ brand }}</span>
           </a>
           <p>{{ config.footerNote || '作品展示与介绍。' }}</p>
           <FooterChannels :channels="config.footerChannels" :label="config.footerChannelsLabel" />

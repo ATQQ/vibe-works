@@ -30,6 +30,16 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
     : []
 
   const userMarkdownConfig = user.markdown?.config
+  const userHead = user.head ?? []
+  const userHasIcon = userHead.some(
+    (item) =>
+      Array.isArray(item) &&
+      item[0] === 'link' &&
+      typeof item[1] === 'object' &&
+      item[1] !== null &&
+      'rel' in item[1] &&
+      String((item[1] as { rel?: string }).rel) === 'icon',
+  )
 
   const config: UserConfig = {
     lang: 'zh-CN',
@@ -40,9 +50,11 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
     ...user,
     head: [
       ['meta', { name: 'theme-color', content: '#1da350' }],
-      ['link', { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' }],
+      ...(userHasIcon
+        ? []
+        : ([['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }]] as typeof userHead)),
       ['script', {}, themeBoot],
-      ...(user.head ?? []),
+      ...userHead,
     ],
     markdown: {
       ...user.markdown,

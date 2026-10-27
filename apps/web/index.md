@@ -2,7 +2,7 @@
 title: Vibe works
 description: 作品展示与介绍。
 home:
-  eyebrow: Vibe works
+  eyebrow: Vibe 作品集
   title: 能玩的作品，都在这里
   lede: APP、CLI、网站、都有。部分 GitHub 开源。
   primary:

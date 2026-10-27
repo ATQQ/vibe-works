@@ -3,9 +3,9 @@ import { NButton, NDrawer, NDrawerContent } from 'naive-ui'
 import { useData, useRoute } from 'vitepress'
 import { computed, ref, useSlots } from 'vue'
 import { useThemeMode } from '../theme-mode'
-import type { VibeThemeConfig } from '../types'
+import type { SocialLink, VibeThemeConfig } from '../types'
 import BrandMark from './BrandMark.vue'
-import { resolveSocialSvg } from './SocialIcons'
+import { resolveSocialIcon } from './SocialIcons'
 
 const { theme, site } = useData()
 const route = useRoute()
@@ -15,6 +15,8 @@ const open = ref(false)
 
 const config = computed(() => (theme.value ?? {}) as VibeThemeConfig)
 const brand = computed(() => config.value.brand || site.value.title || 'Vibe works')
+const logo = computed(() => config.value.logo?.trim() || '')
+const logoLink = computed(() => config.value.logoLink?.trim() || '/')
 const nav = computed(
   () =>
     config.value.nav ?? [
@@ -23,7 +25,12 @@ const nav = computed(
     ],
 )
 const space = computed(() => config.value.space)
-const socialLinks = computed(() => config.value.socialLinks ?? [])
+const socialLinks = computed(() =>
+  (config.value.socialLinks ?? []).map((item) => ({
+    ...item,
+    resolvedIcon: resolveSocialIcon(item.icon),
+  })),
+)
 const hasExtra = computed(() => Boolean(slots['nav-bar-extra']?.()))
 
 function active(link: string) {
@@ -33,18 +40,34 @@ function active(link: string) {
   return path === link || path === bare || path.startsWith(`${bare}/`)
 }
 
-function socialLabel(item: { icon: string | { svg: string }; ariaLabel?: string; link: string }) {
+function socialLabel(item: SocialLink) {
   if (item.ariaLabel) return item.ariaLabel
-  if (typeof item.icon === 'string') return item.icon
+  if (typeof item.icon === 'string') {
+    if (/^https?:\/\//i.test(item.icon) || item.icon.startsWith('/') || item.icon.includes('/')) {
+      try {
+        return new URL(item.link, 'https://local.invalid').hostname || '外链'
+      } catch {
+        return '外链'
+      }
+    }
+    return item.icon
+  }
   return '外链'
 }
+
 </script>
 
 <template>
   <header class="vw-header">
     <div class="vw-container vw-header-inner">
-      <a class="vw-brand" href="/" aria-label="Vibe works 首页">
-        <BrandMark />
+      <a
+        class="vw-brand"
+        :href="logoLink"
+        :aria-label="brand"
+        :target="logoLink.startsWith('http') ? '_blank' : undefined"
+        :rel="logoLink.startsWith('http') ? 'noopener noreferrer' : undefined"
+      >
+        <BrandMark :src="logo || undefined" :alt="brand" />
         <span>{{ brand }}</span>
       </a>
       <nav class="vw-nav" aria-label="主导航">
@@ -68,7 +91,16 @@ function socialLabel(item: { icon: string | { svg: string }; ariaLabel?: string;
           rel="noopener noreferrer"
           :aria-label="socialLabel(item)"
         >
-          <span class="vw-social-icon" v-html="resolveSocialSvg(item.icon)" />
+          <span class="vw-social-icon">
+            <img
+              v-if="item.resolvedIcon.kind === 'img'"
+              :src="item.resolvedIcon.value"
+              alt=""
+              width="16"
+              height="16"
+            />
+            <span v-else aria-hidden="true" v-html="item.resolvedIcon.value" />
+          </span>
         </a>
         <button
           class="vw-icon-btn"

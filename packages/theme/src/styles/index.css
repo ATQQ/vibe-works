@@ -137,7 +137,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  height: 36px;
+  min-height: 40px;
   font-weight: 700;
   letter-spacing: -0.03em;
   font-size: 16px;
@@ -218,10 +218,12 @@ html.dark .vw-nav a {
 }
 
 .vw-social-icon :is(svg),
-.vw-action-icon :is(svg) {
+.vw-action-icon :is(svg),
+.vw-social-icon img {
   width: 16px;
   height: 16px;
   display: block;
+  object-fit: contain;
 }
 
 .vw-action-btn {
