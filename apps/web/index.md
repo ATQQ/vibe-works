@@ -1,6 +1,6 @@
 ---
-title: Vibe works
-description: 作品展示与介绍。
+# title: 粥里有勺糖 - 作品集
+# description: 作品展示与介绍。
 home:
   eyebrow: Vibe 作品集
   title: 能玩的作品，都在这里

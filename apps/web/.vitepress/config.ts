@@ -1,14 +1,15 @@
 import { withThemeConfig } from '@vibe-works/vitepress-theme/config'
 
 export default withThemeConfig({
-  title: 'Vibe+开源作品',
-  description: '作品展示与介绍。',
+  title: '粥里有勺糖 - 作品集',
+  description:
+    '粥里有勺糖的个人作品集：收录 App、CLI、网站与开源工具，含介绍、适用场景与 GitHub / 独立站入口，方便快速了解与试用。',
   head: [
     ['link', { rel: 'icon', href: '/logo.svg?v=2', type: 'image/svg+xml' }],
     ['link', { rel: 'apple-touch-icon', href: '/logo.png' }],
   ],
   themeConfig: {
-    brand: 'Vibe+开源作品',
+    brand: '粥里有勺糖 - 作品集',
     logo: '/logo.svg',
     logoLink: 'https://sugarat.top',
     caption: '作品展示',
