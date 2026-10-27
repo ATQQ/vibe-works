@@ -51,6 +51,20 @@ export interface ActionItem {
   modalContent?: string
 }
 
+/** Detail page right-rail media card (e.g. 小程序码). */
+export interface RailCard {
+  title?: string
+  text?: string
+  /** QR / media image path or URL */
+  image?: string
+  /** Alias of image */
+  qrImage?: string
+  /** Caption under the image, e.g. 「扫码打开」 */
+  caption?: string
+  /** Built-in `wechat` or image URL/path; defaults to wechat */
+  icon?: string
+}
+
 export interface HomePerk {
   title: string
   text: string

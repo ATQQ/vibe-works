@@ -39,9 +39,9 @@ withDefaults(
 }
 
 .vw-mark-img {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 </style>

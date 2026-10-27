@@ -9,7 +9,7 @@ accent: amber
 icon: https://theme.sugarat.top/logo.png
 cover: /covers/sugarat-theme.png
 tags: [Vitepress, Vue, 开源]
-featured: 4
+featured: 3
 order: 40
 actions:
   - label: 访问站点

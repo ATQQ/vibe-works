@@ -91,9 +91,15 @@ export default Theme
 ::::
 ```
 
-右侧 CTA 写在 frontmatter：
+右侧栏写在 frontmatter：按钮用 `actions`，小程序码等媒体用 `railCard`。
 
 ```yaml
+railCard:
+  title: 微信小程序
+  text: 微信扫码即可打开
+  image: /qr/demo.jpg   # 或 qrImage
+  caption: 扫码打开
+  icon: wechat          # 可选：wechat / 图片路径
 actions:
   - label: 访问站点
     icon: link
@@ -108,7 +114,7 @@ actions:
       微信 / 邮箱说明…
 ```
 
-常用字段：`catalog`（`work` | `service`）、`summary`、`category`、`platforms`、`accent`（`mint` `amber` `sea` `lilac` `clay` `ink`）、`icon`、`tags`、`featured`（数字，越小越靠前；不配则不进首页精选）、`order`、`actions`。
+常用字段：`catalog`（`work` | `service`）、`summary`、`category`、`platforms`、`accent`（`mint` `amber` `sea` `lilac` `clay` `ink`）、`icon`、`tags`、`featured`（数字，越小越靠前；不配则不进首页精选）、`order`、`actions`、`railCard`。
 
 `platforms` 支持字符串自动匹配图标，或对象自定义。内置 logo 来自 Google / Devicon / MingCute / Simple Icons 等现成资源（见 `src/assets/platforms/SOURCES.md`）：
 

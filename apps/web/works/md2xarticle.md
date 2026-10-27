@@ -9,7 +9,7 @@ accent: clay
 icon: /icons/md2xarticle.png
 cover: /covers/md2xarticle.png
 tags: [Chrome, 开源]
-featured: 1
+featured: 6
 order: 10
 actions:
   - label: 访问站点

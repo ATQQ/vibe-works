@@ -9,7 +9,7 @@ accent: mint
 icon: https://docs.kite.sugarat.top/logo.svg
 cover: /covers/kite.png
 tags: [Node.js, Bun, 开源]
-featured: 6
+featured: 5
 order: 70
 actions:
   - label: 访问站点

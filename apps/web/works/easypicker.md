@@ -9,7 +9,7 @@ accent: sea
 icon: https://docs.ep.sugarat.top/logo.png
 cover: /covers/easypicker.png
 tags: [Vue, Node.js, 开源]
-featured: 5
+featured: 4
 order: 50
 actions:
   - label: 访问站点
@@ -18,14 +18,12 @@ actions:
   - label: GitHub
     icon: github
     href: https://github.com/ATQQ/easypicker2-client
-  - label: 购买 / 部署咨询
+  - label: 定制 / 部署咨询
     icon: cart
     type: modal
-    modalTitle: 购买与部署
+    modalTitle: 定制&部署
     modalContent: |
-      本站为静态展示，不收款。
-      如需私有化部署或定制，请通过文档站或 GitHub Issues 联系。
-      文档：https://docs.ep.sugarat.top/deploy/
+      如需私有化部署或定制，可以直接微信联系。
 ---
 
 :::: tabs

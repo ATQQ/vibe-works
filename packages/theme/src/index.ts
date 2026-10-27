@@ -21,6 +21,7 @@ export type {
   HomeCopy,
   HomePerk,
   PlatformInput,
+  RailCard,
   SocialLink,
   VibeThemeConfig,
 } from './types'

@@ -9,8 +9,14 @@ accent: mint
 icon: https://miaowa.sugarat.top/favicon.ico
 cover: /covers/miaowa.png
 tags: [小程序, Vue]
-featured: 2
+featured: 1
 order: 20
+railCard:
+  title: 微信小程序
+  text: 微信扫码即可打开，在微信里记账
+  image: /qr/miaowa-miniapp.jpg
+  caption: 扫码打开
+  icon: wechat
 actions:
   - label: 访问站点
     icon: link
