@@ -3,7 +3,7 @@ title: echo-trails
 kind: detail
 catalog: work
 summary: “echo” 象征记忆的回响，走过这些 trails，就能听到记忆的声音。
-category: 应用
+category: APP
 platforms: [Windows, macOS, Android]
 accent: lilac
 icon: https://photo.sugarat.top/favicon.ico

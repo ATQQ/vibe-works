@@ -3,7 +3,7 @@ title: 博客主题 @sugarat/theme
 kind: detail
 catalog: work
 summary: 基于 VitePress 实现的简约风博客主题，开箱即用，支持深色模式、评论、RSS、Pagefind 全文搜索等。
-category: 主题与博客
+category: Web应用
 platforms: [Web]
 accent: amber
 icon: https://theme.sugarat.top/logo.png

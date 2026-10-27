@@ -3,7 +3,7 @@ title: OSS 图床
 kind: detail
 catalog: work
 summary: 基于又拍云/七牛云对象存储服务搭建的图床应用，前端纯静态，无需后端。
-category: 开源工具
+category: Web应用
 platforms: [Web]
 accent: clay
 icon: https://imgbed.sugarat.top/favicon.ico

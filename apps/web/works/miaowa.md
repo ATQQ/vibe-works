@@ -3,7 +3,7 @@ title: 妙蛙记账
 kind: detail
 catalog: work
 summary: 一句话，记清花销；一句话完成想要的数据查询。
-category: 应用
+category: APP
 platforms: [Web, Android, 小程序]
 accent: mint
 icon: https://miaowa.sugarat.top/favicon.ico

@@ -3,7 +3,7 @@ title: Markdown → X 文章
 kind: detail
 catalog: work
 summary: 把 Markdown 粘贴进 X 文章编辑器，自动生成富文本并上传图片；支持粘贴、拖拽文件和本地图片。
-category: 开源工具
+category: 插件
 platforms: [Chrome]
 accent: clay
 icon: /icons/md2xarticle.png

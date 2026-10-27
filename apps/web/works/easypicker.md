@@ -3,7 +3,7 @@ title: EasyPicker（轻取）
 kind: detail
 catalog: work
 summary: 在线文件收集系统，一站式存储、无需注册即可提交，支持私有化部署。
-category: 开源工具
+category: Web应用
 platforms: [Web]
 accent: sea
 icon: https://docs.ep.sugarat.top/logo.png
