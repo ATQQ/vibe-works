@@ -15,13 +15,26 @@ home:
     - 10 件作品
     - 纯静态，无账号
     - 外链到站点与仓库
+  perks:
+    - icon: filter
+      title: 先看作品本身
+      text: 介绍和场景摊开，不用猜适不适合。
+    - icon: doc
+      title: 外链写清楚
+      text: 独立站、GitHub 在详情页一键打开。
+    - icon: play
+      title: 打开就能逛
+      text: 纯静态页面，无账号、不收款。
+    - icon: shield
+      title: 想聊能联系
+      text: 联系 / 购买等 CTA 可自定义弹窗。
   featuredTitle: 作品
-  featuredLede: 精选几件，或切换到所有作品。
-  closingTitle: 想看完整列表？
-  closingLede: 「全部」页支持搜索和按分类筛选。
-  closingLink:
-    text: 打开全部
-    link: /works/
+  featuredLede: 瞧一瞧，看一看。
+  # closingTitle: 想看完整列表？
+  # closingLede: 「全部」页支持搜索和按分类筛选。
+  # closingLink:
+    # text: 打开全部
+    # link: /works/
 ---
 
 <script setup lang="ts">

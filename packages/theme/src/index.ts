@@ -15,6 +15,7 @@ export type {
   CatalogItem,
   CatalogCopy,
   HomeCopy,
+  HomePerk,
   SocialLink,
   VibeThemeConfig,
 } from './types'

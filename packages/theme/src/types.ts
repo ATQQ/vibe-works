@@ -42,6 +42,13 @@ export interface ActionItem {
   modalContent?: string
 }
 
+export interface HomePerk {
+  title: string
+  text: string
+  /** filter | doc | play | shield | link | chat */
+  icon?: string
+}
+
 export interface HomeCopy {
   eyebrow?: string
   title?: string
@@ -49,6 +56,7 @@ export interface HomeCopy {
   primary?: LinkItem
   secondary?: LinkItem
   checks?: string[]
+  perks?: HomePerk[]
   featuredTitle?: string
   featuredLede?: string
   closingTitle?: string

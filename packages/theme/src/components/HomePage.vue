@@ -26,6 +26,24 @@ const featured = computed(() =>
     .sort((a, b) => a.order - b.order),
 )
 const shown = computed(() => (worksTab.value === 'featured' ? featured.value : stage.value))
+
+const perkIcons: Record<string, string> = {
+  filter:
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><circle cx="12" cy="16" r="3"/></svg>',
+  doc: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
+  play: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9.5v5l4.5-2.5z"/></svg>',
+  shield:
+    '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  link: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07L11 5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.8 13.12a5 5 0 0 0 7.07 7.07L13 19"/></svg>',
+  chat: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 6h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H10l-4 3v-3H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/></svg>',
+}
+
+const perkFallback = ['filter', 'doc', 'play', 'shield']
+
+function perkIcon(icon: string | undefined, index: number) {
+  const key = icon || perkFallback[index % perkFallback.length]
+  return perkIcons[key] || perkIcons.filter
+}
 </script>
 
 <template>
@@ -74,6 +92,18 @@ const shown = computed(() => (worksTab.value === 'featured' ? featured.value : s
           </ul>
         </div>
         <HeroMarquee :items="stage" />
+      </div>
+    </section>
+
+    <section v-if="home.perks?.length" class="vw-perks-wrap">
+      <div class="vw-container">
+        <ul class="vw-perks">
+          <li v-for="(perk, index) in home.perks" :key="perk.title">
+            <span class="vw-perk-icon" aria-hidden="true" v-html="perkIcon(perk.icon, index)" />
+            <strong>{{ perk.title }}</strong>
+            <p>{{ perk.text }}</p>
+          </li>
+        </ul>
       </div>
     </section>
 
