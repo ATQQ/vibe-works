@@ -10,19 +10,18 @@ withDefaults(
   }>(),
   { variant: 'full' },
 )
-
-const metrics = [
-  { key: 'downloads', label: '预览', icon: '↓' },
-  { key: 'views', label: '查看', icon: '◎' },
-  { key: 'rating', label: '评分', icon: '★' },
-  { key: 'users', label: '试用', icon: '◌' },
-] as const
 </script>
 
 <template>
   <article v-if="variant === 'mini'" class="vw-mini">
     <a :href="item.url" :aria-label="item.title">
-      <CoverArt :title="item.title" :caption="item.category" :accent="item.accent" />
+      <CoverArt
+        :title="item.title"
+        :caption="item.category"
+        :accent="item.accent"
+        :cover="item.cover"
+        :icon="item.icon"
+      />
     </a>
     <div class="vw-mini-body">
       <div class="vw-mini-kicker">
@@ -31,19 +30,24 @@ const metrics = [
       </div>
       <h3><a :href="item.url">{{ item.title }}</a></h3>
       <p class="vw-clamp">{{ item.summary }}</p>
-      <div class="vw-platforms">
+      <div v-if="item.platforms?.length" class="vw-platforms">
         <span v-for="platform in item.platforms" :key="platform">{{ platform }}</span>
       </div>
       <div class="vw-mini-foot">
         <a :href="item.url">详情 →</a>
-        <strong class="vw-price">{{ item.priceLabel }}</strong>
       </div>
     </div>
   </article>
 
   <article v-else class="vw-card">
     <a :href="item.url" :aria-label="item.title">
-      <CoverArt :title="item.title" :caption="item.category" :accent="item.accent" />
+      <CoverArt
+        :title="item.title"
+        :caption="item.category"
+        :accent="item.accent"
+        :cover="item.cover"
+        :icon="item.icon"
+      />
     </a>
     <div class="vw-card-body">
       <div class="vw-card-kicker">
@@ -52,14 +56,8 @@ const metrics = [
       </div>
       <h3><a :href="item.url">{{ item.title }}</a></h3>
       <p class="vw-clamp">{{ item.summary }}</p>
-      <div class="vw-platforms">
+      <div v-if="item.platforms?.length" class="vw-platforms">
         <span v-for="platform in item.platforms" :key="platform">▣ {{ platform }}</span>
-      </div>
-      <div class="vw-metrics">
-        <div v-for="metric in metrics" :key="metric.key">
-          <b><span aria-hidden="true">{{ metric.icon }}</span>{{ item.stats[metric.key] }}</b>
-          <small>{{ metric.label }}</small>
-        </div>
       </div>
       <div v-if="item.tags.length" class="vw-tags">
         <NTag
@@ -73,10 +71,7 @@ const metrics = [
         </NTag>
       </div>
       <div class="vw-card-foot">
-        <div>
-          <strong class="vw-price">{{ item.priceLabel }}</strong>
-          <span v-if="item.trial" class="vw-trial">{{ item.trial }}</span>
-        </div>
+        <span class="vw-card-foot-spacer" />
         <NButton type="primary" tag="a" :href="item.url" size="medium">
           查看详情 →
         </NButton>

@@ -32,10 +32,19 @@ importers:
       '@fontsource-variable/bricolage-grotesque':
         specifier: ^5.2.8
         version: 5.3.0
+      markdown-it-container:
+        specifier: ^4.0.0
+        version: 4.0.0
       naive-ui:
         specifier: ^2.43.1
         version: 2.45.3(vue@3.5.44(typescript@5.9.3))
     devDependencies:
+      '@types/markdown-it':
+        specifier: ^14.2.0
+        version: 14.2.0
+      '@types/markdown-it-container':
+        specifier: ^4.0.1
+        version: 4.0.1
       '@vitejs/plugin-vue':
         specifier: ^6.0.1
         version: 6.0.10(vite@7.3.7(lightningcss@1.33.0))(vue@3.5.44(typescript@5.9.3))
@@ -723,6 +732,9 @@ packages:
   '@types/lodash@4.17.27':
     resolution: {integrity: sha512-VenMRv/eKNrspX9v3H4dbmjsrnCOYdYBG3kxXKk3dG6X+urBGcj2Prww3xw1U5K4FV/mE4h5GbWd0szEKf+9ew==}
 
+  '@types/markdown-it-container@4.0.1':
+    resolution: {integrity: sha512-lGoaXzFY51sfUiBZ+L9V7n/Ah2q/46G2MGERUXN/4Djq0aCFOEUxysC8xftAdf5EdnvKfb2QkQnGNMoaKwjI1Q==}
+
   '@types/markdown-it@14.2.0':
     resolution: {integrity: sha512-NoQ2yGlLWj4wpxMs+TYmRKk3thDrQ97agr7sFqfLsAlvoS8SNQuTrlObhFqG9iugdTtgOE9jpJ6FNM4ZGsa5xQ==}
 
@@ -1038,6 +1050,9 @@ packages:
 
   mark.js@8.11.1:
     resolution: {integrity: sha512-1I+1qpDt4idfgLQG+BNWmrqku+7/2bi5nLf4YwF8y8zXvmfiTBY3PV3ZibfrjBueCByROpuBjLLFCajqkgYoLQ==}
+
+  markdown-it-container@4.0.0:
+    resolution: {integrity: sha512-HaNccxUH0l7BNGYbFbjmGpf5aLHAMTinqRZQAEQbMr2cdD3z91Q6kIo1oUn1CQndkT03jat6ckrdRYuwwqLlQw==}
 
   mdast-util-to-hast@13.2.1:
     resolution: {integrity: sha512-cctsq2wp5vTsLIcaymblUriiTcZd0CwWtCbLvrOzYCDZoWyMNV8sZ7krj09FSnsiJi3WVsHLM4k6Dq/yaPyCXA==}
@@ -1690,6 +1705,10 @@ snapshots:
 
   '@types/lodash@4.17.27': {}
 
+  '@types/markdown-it-container@4.0.1':
+    dependencies:
+      '@types/markdown-it': 14.2.0
+
   '@types/markdown-it@14.2.0':
     dependencies:
       '@types/linkify-it': 5.0.0
@@ -2030,6 +2049,8 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.6.0
 
   mark.js@8.11.1: {}
+
+  markdown-it-container@4.0.0: {}
 
   mdast-util-to-hast@13.2.1:
     dependencies:

@@ -83,8 +83,15 @@ img {
 
 .vw-app {
   min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: var(--vw-bg);
   color: var(--vw-fg);
+}
+
+.vw-app > #main {
+  flex: 1 0 auto;
 }
 
 .vw-skip {
@@ -185,6 +192,51 @@ html.dark .vw-nav a {
 
 .vw-icon-btn:hover {
   border-color: #cfd5df;
+}
+
+.vw-social-icon,
+.vw-action-icon {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.vw-social-icon :is(svg),
+.vw-action-icon :is(svg) {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.vw-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vw-appicon img {
+  width: 56%;
+  height: 56%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.vw-content-tabs {
+  margin-top: 8px;
+}
+
+.vw-content-tabs-body {
+  margin-top: 12px;
+}
+
+.vw-detail-grid.has-rail {
+  grid-template-columns: minmax(0, 1fr) 332px;
+}
+
+.vw-drawer-extra {
+  margin-top: 8px;
 }
 
 .vw-menu-btn {
@@ -529,6 +581,57 @@ html.dark .vw-nav a {
   aspect-ratio: 16 / 10;
   padding: 14px;
   background: linear-gradient(160deg, #e7f8ef, #c6edd8);
+  overflow: hidden;
+  position: relative;
+}
+
+.vw-cover.is-mode-cover {
+  padding: 0;
+}
+
+.vw-cover-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.vw-cover-icon {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.vw-cover-icon img {
+  width: min(72px, 28%);
+  height: min(72px, 28%);
+  object-fit: contain;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 24px -16px rgba(16, 24, 40, 0.45);
+}
+
+.vw-cover-icon span[aria-hidden='true'] {
+  font-size: clamp(40px, 8vw, 56px);
+  line-height: 1;
+}
+
+.vw-cover-icon-caption {
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--vw-muted);
+  max-width: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.vw-cover.is-ink .vw-cover-icon-caption {
+  color: #9aadc4;
 }
 
 .vw-cover.is-amber { background: linear-gradient(160deg, #fff4e4, #ffd7a1); }
@@ -844,7 +947,7 @@ html.dark .vw-nav a {
 
 .vw-detail-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 332px;
+  grid-template-columns: minmax(0, 1fr);
   gap: 28px;
   align-items: start;
   margin-top: 16px;

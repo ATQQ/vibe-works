@@ -12,9 +12,8 @@ const columns = computed(
       {
         title: '目录',
         links: [
-          { text: '作品', link: '/works/' },
-          { text: '工具', link: '/tools/' },
-          { text: '我的空间', link: '/space/' },
+          { text: '首页', link: '/' },
+          { text: '全部', link: '/works/' },
         ],
       },
     ],
@@ -30,7 +29,7 @@ const columns = computed(
             <BrandMark />
             <span>{{ config.brand || site.title }}</span>
           </a>
-          <p>{{ config.footerNote || '作品目录与工具占位。' }}</p>
+          <p>{{ config.footerNote || '作品展示与介绍。' }}</p>
         </div>
         <div v-for="column in columns" :key="column.title">
           <h3>{{ column.title }}</h3>
@@ -41,7 +40,7 @@ const columns = computed(
           </ul>
         </div>
       </div>
-      <p class="vw-copy">© {{ new Date().getFullYear() }} {{ config.brand || site.title }} · 静态演示，不含支付</p>
+      <p class="vw-copy">© {{ new Date().getFullYear() }} {{ config.brand || site.title }}</p>
     </div>
   </footer>
 </template>

@@ -1,10 +1,10 @@
 ---
-title: 作品
-description: 按场景浏览 Vibe works 的案例。每件都写了适合谁、交付物和定价占位。
+title: 全部作品
+description: 按分类浏览作品，搜索只在本机过滤。
 catalog:
-  crumb: 作品
-  title: 作品目录
-  lede: 五件可以打开的案例。搜索和分类只在这台浏览器里过滤，没有账号。
+  crumb: 全部
+  title: 全部作品
+  lede: 搜索与分类只在这台浏览器里过滤，没有账号。
   scope: work
 ---
 

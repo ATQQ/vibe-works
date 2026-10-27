@@ -14,21 +14,21 @@ const { frontmatter } = useData()
 const copy = computed(() => (frontmatter.value.catalog ?? {}) as CatalogCopy)
 const scope = computed(() => props.scope || copy.value.scope || 'all')
 const query = ref('')
-const category = ref('全部')
+const category = ref('所有作品')
 
 const pool = computed(() =>
   props.catalog.filter((item) => scope.value === 'all' || item.catalog === scope.value),
 )
 
 const categories = computed(() => [
-  '全部',
+  '所有作品',
   ...Array.from(new Set(pool.value.map((item) => item.category).filter(Boolean))),
 ])
 
 const filtered = computed(() => {
   const q = query.value.trim().toLowerCase()
   return pool.value.filter((item) => {
-    const inCat = category.value === '全部' || item.category === category.value
+    const inCat = category.value === '所有作品' || item.category === category.value
     if (!inCat) return false
     if (!q) return true
     const haystack = [item.title, item.summary, item.category, ...item.tags]
@@ -50,7 +50,7 @@ const filtered = computed(() => {
       <p class="vw-lede">{{ copy.lede }}</p>
     </header>
     <div class="vw-filters">
-      <NInput v-model:value="query" clearable placeholder="搜索名称、场景或标签" />
+      <NInput v-model:value="query" clearable placeholder="搜索名称、标签" />
       <div class="vw-cats">
         <NButton
           v-for="item in categories"

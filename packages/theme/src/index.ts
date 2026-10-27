@@ -6,13 +6,16 @@ import HomePage from './components/HomePage.vue'
 import ServicesPage from './components/ServicesPage.vue'
 import SpacePage from './components/SpacePage.vue'
 import TideDemo from './components/TideDemo.vue'
+import VWTab from './components/VWTab.vue'
+import VWTabs from './components/VWTabs.vue'
 import Layout from './layout/Layout.vue'
 
 export type {
+  ActionItem,
   CatalogItem,
   CatalogCopy,
   HomeCopy,
-  ServicesCopy,
+  SocialLink,
   VibeThemeConfig,
 } from './types'
 
@@ -34,6 +37,8 @@ const theme = {
     app.component('ServicesPage', ServicesPage)
     app.component('SpacePage', SpacePage)
     app.component('TideDemo', TideDemo)
+    app.component('VWTabs', VWTabs)
+    app.component('VWTab', VWTab)
   },
 } satisfies Theme
 

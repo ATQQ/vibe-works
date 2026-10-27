@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { NButton } from 'naive-ui'
 import { useData } from 'vitepress'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import type { CatalogItem, HomeCopy } from '../types'
 import HeroMarquee from './HeroMarquee.vue'
 import ProductCard from './ProductCard.vue'
-import QuotePanel from './QuotePanel.vue'
 
 const props = withDefaults(defineProps<{ catalog?: CatalogItem[] }>(), {
   catalog: () => [],
@@ -14,6 +13,7 @@ const props = withDefaults(defineProps<{ catalog?: CatalogItem[] }>(), {
 const { frontmatter } = useData()
 
 const home = computed(() => (frontmatter.value.home ?? {}) as HomeCopy)
+const worksTab = ref<'featured' | 'all'>('featured')
 
 const stage = computed(() =>
   [...props.catalog]
@@ -23,9 +23,9 @@ const stage = computed(() =>
 const featured = computed(() =>
   [...props.catalog]
     .filter((item) => item.featured)
-    .sort((a, b) => a.order - b.order)
-    .slice(0, 3),
+    .sort((a, b) => a.order - b.order),
 )
+const shown = computed(() => (worksTab.value === 'featured' ? featured.value : stage.value))
 </script>
 
 <template>
@@ -81,55 +81,33 @@ const featured = computed(() =>
       <div class="vw-container">
         <div class="vw-section-head">
           <div>
-            <h2>{{ home.featuredTitle }}</h2>
+            <h2>{{ home.featuredTitle || '作品' }}</h2>
             <p>{{ home.featuredLede }}</p>
           </div>
-          <a v-if="home.featuredMore" class="vw-more" :href="home.featuredMore.link">
-            {{ home.featuredMore.text }} →
-          </a>
+          <a class="vw-more" href="/works/">全部 →</a>
+        </div>
+        <div class="vw-cats" style="margin-bottom: 16px">
+          <NButton
+            size="small"
+            round
+            :type="worksTab === 'featured' ? 'primary' : 'default'"
+            :secondary="worksTab !== 'featured'"
+            @click="worksTab = 'featured'"
+          >
+            精选
+          </NButton>
+          <NButton
+            size="small"
+            round
+            :type="worksTab === 'all' ? 'primary' : 'default'"
+            :secondary="worksTab !== 'all'"
+            @click="worksTab = 'all'"
+          >
+            所有作品
+          </NButton>
         </div>
         <div class="vw-grid">
-          <ProductCard v-for="item in featured" :key="item.url" :item="item" />
-        </div>
-      </div>
-    </section>
-
-    <section class="vw-steps">
-      <div class="vw-container">
-        <h2>{{ home.stepsTitle }}</h2>
-        <p class="vw-lede">{{ home.stepsLede }}</p>
-        <ol>
-          <li v-for="(step, index) in home.steps || []" :key="step.title">
-            <span class="dot" />
-            <em>{{ String(index + 1).padStart(2, '0') }}</em>
-            <h3>{{ step.title }}</h3>
-            <p>{{ step.text }}</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="vw-offer-wrap">
-      <div class="vw-container">
-        <div class="vw-offer">
-          <div>
-            <h2>{{ home.offerTitle }}</h2>
-            <p class="vw-lede">{{ home.offerLede }}</p>
-            <ul class="vw-checks">
-              <li v-for="point in home.offerPoints || []" :key="point" class="vw-check">
-                <i>✓</i>
-                <span>{{ point }}</span>
-              </li>
-            </ul>
-            <a v-if="home.offerLink" class="vw-link" :href="home.offerLink.link">
-              {{ home.offerLink.text }} →
-            </a>
-          </div>
-          <QuotePanel
-            :title="home.quoteTitle"
-            :lines="home.quoteLines"
-            :total="home.quoteTotal"
-          />
+          <ProductCard v-for="item in shown" :key="item.url" :item="item" />
         </div>
       </div>
     </section>

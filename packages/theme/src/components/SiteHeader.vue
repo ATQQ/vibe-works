@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { NButton, NDrawer, NDrawerContent } from 'naive-ui'
 import { useData, useRoute } from 'vitepress'
-import { computed, ref } from 'vue'
+import { computed, ref, useSlots } from 'vue'
 import { useThemeMode } from '../theme-mode'
 import type { VibeThemeConfig } from '../types'
 import BrandMark from './BrandMark.vue'
+import { resolveSocialSvg } from './SocialIcons'
 
 const { theme, site } = useData()
 const route = useRoute()
+const slots = useSlots()
 const { isDark, toggle } = useThemeMode()
 const open = ref(false)
 
@@ -17,17 +19,24 @@ const nav = computed(
   () =>
     config.value.nav ?? [
       { text: '首页', link: '/' },
-      { text: '作品', link: '/works/' },
-      { text: '工具', link: '/tools/' },
+      { text: '全部', link: '/works/' },
     ],
 )
-const space = computed(() => config.value.space ?? { text: '我的空间', link: '/space/' })
+const space = computed(() => config.value.space)
+const socialLinks = computed(() => config.value.socialLinks ?? [])
+const hasExtra = computed(() => Boolean(slots['nav-bar-extra']?.()))
 
 function active(link: string) {
   const path = route.path
   if (link === '/') return path === '/' || path === '/index.html'
   const bare = link.replace(/\/$/, '')
   return path === link || path === bare || path.startsWith(`${bare}/`)
+}
+
+function socialLabel(item: { icon: string | { svg: string }; ariaLabel?: string; link: string }) {
+  if (item.ariaLabel) return item.ariaLabel
+  if (typeof item.icon === 'string') return item.icon
+  return '外链'
 }
 </script>
 
@@ -50,6 +59,17 @@ function active(link: string) {
         </a>
       </nav>
       <div class="vw-header-actions">
+        <a
+          v-for="item in socialLinks"
+          :key="item.link"
+          class="vw-icon-btn"
+          :href="item.link"
+          target="_blank"
+          rel="noopener noreferrer"
+          :aria-label="socialLabel(item)"
+        >
+          <span class="vw-social-icon" v-html="resolveSocialSvg(item.icon)" />
+        </a>
         <button
           class="vw-icon-btn"
           type="button"
@@ -65,7 +85,15 @@ function active(link: string) {
             <path d="M20 14.5A8 8 0 1 1 9.5 4 6.5 6.5 0 0 0 20 14.5z" />
           </svg>
         </button>
-        <NButton class="vw-pill" type="primary" round tag="a" :href="space.link">
+        <slot name="nav-bar-extra" />
+        <NButton
+          v-if="space"
+          class="vw-pill"
+          type="primary"
+          round
+          tag="a"
+          :href="space.link"
+        >
           {{ space.text }}
         </NButton>
         <button class="vw-icon-btn vw-menu-btn" type="button" aria-label="打开菜单" @click="open = true">
@@ -79,7 +107,20 @@ function active(link: string) {
       <NDrawerContent title="导航" closable>
         <nav class="vw-drawer-links" aria-label="移动端导航">
           <a v-for="item in nav" :key="item.link" :href="item.link" @click="open = false">{{ item.text }}</a>
-          <a :href="space.link" @click="open = false">{{ space.text }}</a>
+          <a
+            v-for="item in socialLinks"
+            :key="item.link"
+            :href="item.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            @click="open = false"
+          >
+            {{ socialLabel(item) }}
+          </a>
+          <a v-if="space" :href="space.link" @click="open = false">{{ space.text }}</a>
+          <div v-if="hasExtra" class="vw-drawer-extra" @click="open = false">
+            <slot name="nav-bar-extra" />
+          </div>
         </nav>
       </NDrawerContent>
     </NDrawer>

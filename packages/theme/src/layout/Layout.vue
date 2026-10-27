@@ -75,7 +75,11 @@ const SsrMarkers = defineComponent({
   >
     <div class="vw-app">
       <a class="vw-skip" href="#main">跳到内容</a>
-      <SiteHeader />
+      <SiteHeader>
+        <template #nav-bar-extra>
+          <slot name="nav-bar-extra" />
+        </template>
+      </SiteHeader>
       <main id="main">
         <DetailChrome v-if="isDetail">
           <Content />

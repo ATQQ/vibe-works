@@ -1,7 +1,7 @@
 {
   "name": "@vibe-works/vitepress-theme",
   "version": "0.1.0",
-  "description": "VitePress theme for a light catalog of works and paid-tool placeholders. Chinese-first, Naive UI, SSG-ready.",
+  "description": "VitePress theme for a works portfolio catalog. Chinese-first, Naive UI, SSG-ready.",
   "license": "MIT",
   "type": "module",
   "sideEffects": [
@@ -35,9 +35,12 @@
   "dependencies": {
     "@css-render/vue3-ssr": "^0.15.14",
     "@fontsource-variable/bricolage-grotesque": "^5.2.8",
+    "markdown-it-container": "^4.0.0",
     "naive-ui": "^2.43.1"
   },
   "devDependencies": {
+    "@types/markdown-it": "^14.2.0",
+    "@types/markdown-it-container": "^4.0.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "esbuild": "^0.25.10",
     "typescript": "^5.9.3",

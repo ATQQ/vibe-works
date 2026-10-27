@@ -14,12 +14,12 @@ export interface CatalogItem {
   recommend?: boolean
   platforms: string[]
   accent: string
-  priceLabel: string
-  trial?: string
-  stats: CatalogStats
+  icon?: string
+  cover?: string
   tags: string[]
   featured?: boolean
   order: number
+  stats?: CatalogStats
 }
 
 export interface LinkItem {
@@ -27,15 +27,19 @@ export interface LinkItem {
   link: string
 }
 
-export interface StepItem {
-  title: string
-  text: string
+export interface SocialLink {
+  icon: string | { svg: string }
+  link: string
+  ariaLabel?: string
 }
 
-export interface QuoteLine {
+export interface ActionItem {
   label: string
-  value: string
-  mute?: boolean
+  icon?: string
+  href?: string
+  type?: 'link' | 'modal'
+  modalTitle?: string
+  modalContent?: string
 }
 
 export interface HomeCopy {
@@ -47,17 +51,6 @@ export interface HomeCopy {
   checks?: string[]
   featuredTitle?: string
   featuredLede?: string
-  featuredMore?: LinkItem
-  stepsTitle?: string
-  stepsLede?: string
-  steps?: StepItem[]
-  offerTitle?: string
-  offerLede?: string
-  offerPoints?: string[]
-  offerLink?: LinkItem
-  quoteTitle?: string
-  quoteLines?: QuoteLine[]
-  quoteTotal?: QuoteLine
   closingTitle?: string
   closingLede?: string
   closingLink?: LinkItem
@@ -70,6 +63,13 @@ export interface CatalogCopy {
   scope?: 'work' | 'service' | 'all'
 }
 
+export interface QuoteLine {
+  label: string
+  value: string
+  mute?: boolean
+}
+
+/** Kept for optional ServicesPage; site demos no longer use it. */
 export interface ServicesCopy {
   crumb?: string
   title?: string
@@ -83,37 +83,12 @@ export interface ServicesCopy {
   quoteTotal?: QuoteLine
 }
 
-export interface PlanItem {
-  id: string
-  name: string
-  price: string
-  period?: string
-  devices?: string
-  badge?: string
-  note?: string
-  disabled?: boolean
-}
-
-export interface SceneItem {
-  title: string
-  text: string
-}
-
-export interface NoteItem {
-  title: string
-  text: string
-}
-
-export interface FaqItem {
-  q: string
-  a: string
-}
-
 export interface VibeThemeConfig {
   brand?: string
   caption?: string
   nav?: LinkItem[]
   space?: LinkItem
+  socialLinks?: SocialLink[]
   footerNote?: string
   footerColumns?: { title: string; links: LinkItem[] }[]
 }

@@ -1,4 +1,5 @@
 import type { UserConfig } from 'vitepress'
+import { registerTabsContainers } from './markdown/tabs'
 
 const collectedStyles = new Map<string, string>()
 
@@ -28,10 +29,12 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
     ? userNoExternal.filter((item): item is string => typeof item === 'string')
     : []
 
+  const userMarkdownConfig = user.markdown?.config
+
   const config: UserConfig = {
     lang: 'zh-CN',
     title: 'Vibe works',
-    description: '作品演示与即将开放的工具目录。',
+    description: '作品展示与介绍。',
     cleanUrls: true,
     appearance: false,
     ...user,
@@ -41,6 +44,13 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
       ['script', {}, themeBoot],
       ...(user.head ?? []),
     ],
+    markdown: {
+      ...user.markdown,
+      config(md) {
+        registerTabsContainers(md)
+        userMarkdownConfig?.(md)
+      },
+    },
     vite: {
       ...user.vite,
       server: {

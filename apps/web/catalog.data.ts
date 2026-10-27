@@ -9,14 +9,8 @@ export interface CatalogItem {
   recommend?: boolean
   platforms: string[]
   accent: string
-  priceLabel: string
-  trial?: string
-  stats: {
-    downloads: string
-    views: string
-    rating: string
-    users: string
-  }
+  icon?: string
+  cover?: string
   tags: string[]
   featured?: boolean
   order: number
@@ -31,7 +25,6 @@ export default createContentLoader('**/*.md', {
       .filter((page) => page.frontmatter.kind === 'detail')
       .map((page) => {
         const frontmatter = page.frontmatter
-        const stats = (frontmatter.stats ?? {}) as Record<string, string>
         return {
           url: page.url,
           title: String(frontmatter.title ?? ''),
@@ -41,14 +34,8 @@ export default createContentLoader('**/*.md', {
           recommend: Boolean(frontmatter.recommend),
           platforms: Array.isArray(frontmatter.platforms) ? frontmatter.platforms.map(String) : [],
           accent: String(frontmatter.accent ?? 'mint'),
-          priceLabel: String(frontmatter.priceLabel ?? ''),
-          trial: frontmatter.trial ? String(frontmatter.trial) : undefined,
-          stats: {
-            downloads: String(stats.downloads ?? '—'),
-            views: String(stats.views ?? '—'),
-            rating: String(stats.rating ?? '—'),
-            users: String(stats.users ?? '—'),
-          },
+          icon: frontmatter.icon ? String(frontmatter.icon) : undefined,
+          cover: frontmatter.cover ? String(frontmatter.cover) : undefined,
           tags: Array.isArray(frontmatter.tags) ? frontmatter.tags.map(String) : [],
           featured: Boolean(frontmatter.featured),
           order: Number(frontmatter.order ?? 0),
