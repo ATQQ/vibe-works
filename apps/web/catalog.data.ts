@@ -21,7 +21,8 @@ export interface CatalogItem {
   icon?: string
   cover?: string
   tags: string[]
-  featured?: boolean
+  /** 精选排序权重；未配置则不在首页精选展示 */
+  featured?: number
   order: number
 }
 
@@ -65,7 +66,10 @@ export default createContentLoader('**/*.md', {
           icon: frontmatter.icon ? String(frontmatter.icon) : undefined,
           cover: frontmatter.cover ? String(frontmatter.cover) : undefined,
           tags: Array.isArray(frontmatter.tags) ? frontmatter.tags.map(String) : [],
-          featured: Boolean(frontmatter.featured),
+          featured:
+            frontmatter.featured != null && frontmatter.featured !== false && Number.isFinite(Number(frontmatter.featured))
+              ? Number(frontmatter.featured)
+              : undefined,
           order: Number(frontmatter.order ?? 0),
         }
       })

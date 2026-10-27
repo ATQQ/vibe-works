@@ -9,7 +9,7 @@ accent: sea
 icon: https://docs.ep.sugarat.top/logo.png
 cover: /covers/easypicker.png
 tags: [Vue, 工具]
-featured: true
+featured: 5
 order: 50
 actions:
   - label: 访问站点
@@ -30,6 +30,8 @@ actions:
 
 :::: tabs
 ::: tab 概览
+
+![](/covers/easypicker.png)
 
 在线文件收集系统，一站式存储、无需注册即可提交，支持[私有化部署](https://docs.ep.sugarat.top/deploy/)。
 

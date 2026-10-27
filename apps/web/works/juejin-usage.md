@@ -6,10 +6,10 @@ summary: token 用量明细追踪工具，本地记录、云端同步。
 category: 应用
 platforms: [Windows, macOS]
 accent: sea
-icon: https://lf-web-assets.juejin.cn/obj/juejin-web/xitu_juejin_web/6c61ae65d1c41ae8221a670fa32d05aa.svg
+icon: /icons/juejin-usage.png
 cover: /covers/juejin-usage.png
 tags: [工具, 桌面应用]
-featured: true
+featured: 3
 order: 30
 actions:
   - label: 访问站点
@@ -22,6 +22,8 @@ actions:
 
 :::: tabs
 ::: tab 概览
+
+<img src="/covers/juejin-usage.png" alt="Juejin Usage 封面" />
 
 token 用量明细追踪工具，本地记录、云端同步。
 

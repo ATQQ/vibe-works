@@ -70,7 +70,11 @@ function runAction(action: ActionItem) {
       <div class="vw-detail-grid" :class="{ 'has-rail': actions.length }">
         <div>
           <header class="vw-detail-head">
-            <div class="vw-appicon" :class="`is-${accent}`" aria-hidden="true">
+            <div
+              class="vw-appicon"
+              :class="[iconIsUrl ? 'has-logo' : `is-${accent}`]"
+              aria-hidden="true"
+            >
               <img v-if="iconIsUrl" :src="icon" :alt="title" />
               <template v-else>{{ iconGlyph }}</template>
             </div>

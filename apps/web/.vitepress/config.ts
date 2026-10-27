@@ -11,7 +11,6 @@ export default withThemeConfig({
   themeConfig: {
     brand: '粥里有勺糖 - 作品集',
     logo: '/logo.svg',
-    logoLink: 'https://sugarat.top',
     caption: '作品展示',
     nav: [
       { text: '首页', link: '/' },

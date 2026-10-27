@@ -6,10 +6,10 @@ summary: 把 Markdown 粘贴进 X 文章编辑器，自动生成富文本并上�
 category: 开源工具
 platforms: [Chrome]
 accent: clay
-icon: 📝
+icon: /icons/md2xarticle.png
 cover: /covers/md2xarticle.png
 tags: [Chrome 扩展, Markdown, X]
-featured: true
+featured: 1
 order: 10
 actions:
   - label: 访问站点
@@ -22,6 +22,8 @@ actions:
 
 :::: tabs
 ::: tab 概览
+
+![](/covers/md2xarticle.png)
 
 把 Markdown 粘贴进 X 文章编辑器，自动生成富文本并上传图片；支持粘贴、拖拽文件和本地图片。
 

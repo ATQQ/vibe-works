@@ -21,7 +21,8 @@ export interface CatalogItem {
   icon?: string
   cover?: string
   tags: string[]
-  featured?: boolean
+  /** 精选排序权重；未配置则不在首页精选展示 */
+  featured?: number
   order: number
   stats?: CatalogStats
 }

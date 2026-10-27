@@ -9,7 +9,7 @@ accent: mint
 icon: https://docs.kite.sugarat.top/logo.svg
 cover: /covers/kite.png
 tags: [TypeScript, Node.js, Bun]
-featured: true
+featured: 6
 order: 70
 actions:
   - label: 访问站点
@@ -22,6 +22,8 @@ actions:
 
 :::: tabs
 ::: tab 概览
+
+![](/covers/kite.png)
 
 安装一个 CLI，就能启动 Web 管理端、Server 代理后端和部署上传能力。
 

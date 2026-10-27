@@ -108,7 +108,7 @@ actions:
       微信 / 邮箱说明…
 ```
 
-常用字段：`catalog`（`work` | `service`）、`summary`、`category`、`platforms`、`accent`（`mint` `amber` `sea` `lilac` `clay` `ink`）、`icon`、`tags`、`featured`、`order`、`actions`。
+常用字段：`catalog`（`work` | `service`）、`summary`、`category`、`platforms`、`accent`（`mint` `amber` `sea` `lilac` `clay` `ink`）、`icon`、`tags`、`featured`（数字，越小越靠前；不配则不进首页精选）、`order`、`actions`。
 
 `platforms` 支持字符串自动匹配图标，或对象自定义。内置 logo 来自 Google / Devicon / MingCute / Simple Icons 等现成资源（见 `src/assets/platforms/SOURCES.md`）：
 

@@ -9,7 +9,7 @@ accent: mint
 icon: https://miaowa.sugarat.top/favicon.ico
 cover: /covers/miaowa.png
 tags: [工具, APP]
-featured: true
+featured: 2
 order: 20
 actions:
   - label: 访问站点
@@ -27,6 +27,8 @@ actions:
 
 :::: tabs
 ::: tab 概览
+
+![](/covers/miaowa.png)
 
 一句话，记清花销；一句话完成想要的数据查询。
 

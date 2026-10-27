@@ -232,11 +232,35 @@ html.dark .vw-nav a {
   gap: 8px;
 }
 
+.vw-appicon.has-logo {
+  background: #fff;
+  border: 1px solid var(--vw-border);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+html.dark .vw-appicon.has-logo {
+  background: #1a222e;
+}
+
 .vw-appicon img {
-  width: 56%;
-  height: 56%;
+  width: 72%;
+  height: 72%;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
+}
+
+.vw-tabs .vw-prose img,
+.vw-content-tabs-body img,
+.vw-tabs img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 16px;
+  border-radius: 14px;
+  border: 1px solid var(--vw-border);
+  background: var(--vw-card);
 }
 
 .vw-content-tabs {

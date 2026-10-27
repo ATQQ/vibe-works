@@ -22,8 +22,8 @@ const stage = computed(() =>
 )
 const featured = computed(() =>
   [...props.catalog]
-    .filter((item) => item.featured)
-    .sort((a, b) => a.order - b.order),
+    .filter((item) => item.featured != null)
+    .sort((a, b) => (a.featured ?? 0) - (b.featured ?? 0)),
 )
 const shown = computed(() => (worksTab.value === 'featured' ? featured.value : stage.value))
 
