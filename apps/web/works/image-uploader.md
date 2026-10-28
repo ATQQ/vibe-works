@@ -10,6 +10,7 @@ icon: /icons/uploader.svg
 cover: /covers/image-uploader.png
 tags: [Vue, Nuxt, 开源, VibeCoding]
 date: 2025-05-11
+version: '1.1.0'
 updated: 2026-03-01
 actions:
   - label: 访问站点

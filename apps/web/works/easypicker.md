@@ -11,6 +11,7 @@ cover: /covers/easypicker.png
 tags: [Vue, Node.js, 开源]
 featured: 4
 date: 2021-04-03
+version: '2.10.0'
 updated: 2026-08-24
 railCard:
   title: 加微信

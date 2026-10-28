@@ -11,6 +11,7 @@ cover: /covers/juejin-usage.png
 tags: [React, Electron, Tauri, 开源, VibeCoding]
 featured: 2
 date: 2026-08-13
+version: '0.1.15'
 updated: 2026-10-24
 actions:
   - label: 访问站点

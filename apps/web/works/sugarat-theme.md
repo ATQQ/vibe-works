@@ -11,6 +11,7 @@ cover: /covers/sugarat-theme.png
 tags: [Vitepress, Vue, 开源]
 featured: 3
 date: 2023-01-29
+version: '0.5.31'
 updated: 2026-10-25
 repo: ATQQ/sugar-blog/packages/theme
 actions:

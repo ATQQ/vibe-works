@@ -21,29 +21,31 @@ const platforms = computed(() =>
 const tags = computed(() => (Array.isArray(page.value.tags) ? page.value.tags.map(String) : []))
 const actions = computed(() => (Array.isArray(page.value.actions) ? (page.value.actions as ActionItem[]) : []))
 
-const railCard = computed(() => {
-  const raw = page.value.railCard as RailCard | undefined
-  if (!raw || typeof raw !== 'object') return null
-  const image = String(raw.image ?? raw.qrImage ?? '').trim()
-  if (!image) return null
-  return {
-    title: String(raw.title ?? '').trim(),
-    text: String(raw.text ?? '').trim(),
-    image,
-    caption: String(raw.caption ?? '').trim(),
-    icon: String(raw.icon ?? '').trim(),
-  }
-})
-
-const showRail = computed(() => Boolean(actions.value.length || railCard.value))
-
-const railIconSrc = computed(() => {
-  const value = railCard.value?.icon
-  if (!value) return wechatUrl
-  if (value === 'wechat' || value === 'weixin' || value === '微信') return wechatUrl
+function railIconSrc(value: string) {
   if (/^https?:\/\//.test(value) || value.startsWith('/')) return value
   return wechatUrl
+}
+
+const railCards = computed(() => {
+  const raw = page.value.railCard as RailCard | RailCard[] | undefined
+  const list = Array.isArray(raw) ? raw : raw ? [raw] : []
+  return list.flatMap((card) => {
+    if (!card || typeof card !== 'object') return []
+    const image = String(card.image ?? card.qrImage ?? '').trim()
+    if (!image) return []
+    return [
+      {
+        title: String(card.title ?? '').trim(),
+        text: String(card.text ?? '').trim(),
+        image,
+        caption: String(card.caption ?? '').trim(),
+        iconSrc: railIconSrc(String(card.icon ?? '').trim()),
+      },
+    ]
+  })
 })
+
+const showRail = computed(() => Boolean(actions.value.length || railCards.value.length))
 
 function formatDay(raw: unknown) {
   if (!raw) return ''
@@ -54,17 +56,26 @@ function formatDay(raw: unknown) {
 const launched = computed(() => formatDay(page.value.date))
 const updated = computed(() => formatDay(page.value.updated))
 
-const calendarSvg =
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>'
-const refreshSvg =
-  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.6-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16"/><path d="M20 20v-4h-4"/></svg>'
+const svg = (body: string) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`
+const metaIcons = {
+  version: svg('<circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="7" r="2"/><path d="M6 7v10M18 9c0 5-6 4-12 8"/>'),
+  launched: svg('<rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/>'),
+  updated: svg('<path d="M20 11a8 8 0 0 0-14.6-4.5L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.6 4.5L20 16"/><path d="M20 20v-4h-4"/>'),
+  size: svg('<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="m4 7.5 8 4.5 8-4.5M12 12v9"/>'),
+  lang: svg('<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 2.5 14.4 0 17M12 3.5c-2.5 2.6-2.5 14.4 0 17"/>'),
+}
 
 const meta = computed(() =>
   [
-    page.value.version ? `v${page.value.version}` : '',
-    page.value.size ? String(page.value.size) : '',
-    page.value.lang ? String(page.value.lang) : '',
-  ].filter(Boolean),
+    { key: 'version', text: page.value.version ? `v${page.value.version}` : '' },
+    { key: 'launched', text: launched.value ? `${launched.value} 上线` : '' },
+    { key: 'updated', text: updated.value ? `${updated.value} 更新` : '' },
+    { key: 'size', text: page.value.size ? String(page.value.size) : '' },
+    { key: 'lang', text: page.value.lang ? String(page.value.lang) : '' },
+  ]
+    .filter((item) => item.text)
+    .map((item) => ({ ...item, icon: metaIcons[item.key as keyof typeof metaIcons] })),
 )
 
 const iconIsUrl = computed(() => /^https?:\/\//.test(icon.value) || icon.value.startsWith('/'))
@@ -76,6 +87,7 @@ const iconGlyph = computed(() => {
 const modalOpen = ref(false)
 const modalTitle = ref('')
 const modalContent = ref('')
+const modalImage = ref('')
 
 function actionIcon(name?: string) {
   if (!name) return socialSvgs.link
@@ -121,9 +133,10 @@ onMounted(() => {
 })
 
 function runAction(action: ActionItem) {
-  if (action.type === 'modal' || (!action.href && action.modalContent)) {
+  if (action.type === 'modal' || (!action.href && (action.modalContent || action.modalImage))) {
     modalTitle.value = action.modalTitle || action.label
     modalContent.value = action.modalContent || ''
+    modalImage.value = action.modalImage || ''
     modalOpen.value = true
     return
   }
@@ -145,49 +158,45 @@ function runAction(action: ActionItem) {
       </p>
       <div class="vw-detail-grid" :class="{ 'has-rail': showRail }">
         <header class="vw-detail-head">
-          <div
-            class="vw-appicon"
-            :class="[iconIsUrl ? 'has-logo' : `is-${accent}`]"
-            aria-hidden="true"
-          >
-            <img v-if="iconIsUrl" :src="icon" :alt="title" />
-            <template v-else>{{ iconGlyph }}</template>
-          </div>
-          <div>
-            <h1>{{ title }}</h1>
-            <p class="vw-detail-summary">{{ summary }}</p>
-            <ul v-if="meta.length || launched || updated" class="vw-meta">
-              <li v-if="launched">
-                <span class="vw-meta-icon" aria-hidden="true" v-html="calendarSvg" />
-                {{ launched }} 上线
-              </li>
-              <li v-if="updated">
-                <span class="vw-meta-icon" aria-hidden="true" v-html="refreshSvg" />
-                {{ updated }} 更新
-              </li>
-              <li v-for="item in meta" :key="item">{{ item }}</li>
-            </ul>
-            <PlatformBadges v-if="platforms.length" :platforms="platforms" style="margin-top: 8px" />
-            <div v-if="tags.length" class="vw-detail-tags">
-              <NTag v-for="tag in tags" :key="tag" size="small" round :bordered="false">
-                {{ tag }}
-              </NTag>
+          <div class="vw-detail-intro">
+            <div
+              class="vw-appicon"
+              :class="[iconIsUrl ? 'has-logo' : `is-${accent}`]"
+              aria-hidden="true"
+            >
+              <img v-if="iconIsUrl" :src="icon" :alt="title" />
+              <template v-else>{{ iconGlyph }}</template>
+            </div>
+            <div>
+              <h1>{{ title }}</h1>
+              <p class="vw-detail-summary">{{ summary }}</p>
+              <PlatformBadges v-if="platforms.length" :platforms="platforms" />
             </div>
           </div>
-        </header>
+          <ul v-if="meta.length" class="vw-meta">
+            <li v-for="item in meta" :key="item.key">
+              <span class="vw-meta-icon" aria-hidden="true" v-html="item.icon" />
+              {{ item.text }}
+            </li>
+          </ul>
+          <div v-if="tags.length" class="vw-detail-tags">
+            <NTag v-for="tag in tags" :key="tag" size="small" round :bordered="false">
+              {{ tag }}
+            </NTag>
+          </div>        </header>
 
         <aside v-if="showRail" class="vw-rail">
-          <div v-if="railCard" class="vw-rail-card">
+          <div v-for="(card, index) in railCards" :key="`${card.image}-${index}`" class="vw-rail-card">
             <div class="vw-rail-card-copy">
               <span class="vw-rail-card-icon" aria-hidden="true">
-                <img :src="railIconSrc" alt="" width="18" height="18" />
+                <img :src="card.iconSrc" alt="" width="18" height="18" />
               </span>
-              <strong v-if="railCard.title">{{ railCard.title }}</strong>
-              <p v-if="railCard.text">{{ railCard.text }}</p>
+              <strong v-if="card.title">{{ card.title }}</strong>
+              <p v-if="card.text">{{ card.text }}</p>
             </div>
             <figure class="vw-rail-card-qr">
-              <img :src="railCard.image" :alt="railCard.title || '二维码'" width="120" height="120" />
-              <figcaption v-if="railCard.caption">{{ railCard.caption }}</figcaption>
+              <img :src="card.image" :alt="card.title || '二维码'" width="120" height="120" />
+              <figcaption v-if="card.caption">{{ card.caption }}</figcaption>
             </figure>
           </div>
 
@@ -225,7 +234,8 @@ function runAction(action: ActionItem) {
       :title="modalTitle"
       :style="{ width: 'min(440px, calc(100vw - 32px))' }"
     >
-      <div class="vw-prose vw-modal-body" style="white-space: pre-wrap">{{ modalContent }}</div>
+      <div v-if="modalContent" class="vw-prose vw-modal-body" style="white-space: pre-wrap">{{ modalContent }}</div>
+      <img v-if="modalImage" class="vw-modal-image" :src="modalImage" :alt="modalTitle" width="200" height="200" />
       <div style="margin-top: 16px; display: flex; justify-content: flex-end">
         <NButton type="primary" @click="modalOpen = false">关闭</NButton>
       </div>

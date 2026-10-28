@@ -11,26 +11,35 @@ cover: /covers/miaowa.png
 tags: [小程序, Vue, VibeCoding]
 featured: 1
 date: 2026-08-17
+version: '0.2.3'
 updated: 2026-10-25
 repo: ATQQ/smart-expense-app
 railCard:
-  title: 微信小程序
-  text: 微信扫码即可打开，在微信里记账
-  image: /qr/miaowa-miniapp.jpg
-  caption: 扫码打开
-  icon: wechat
+  - title: 微信小程序
+    text: 微信扫码即可打开，在微信里记账
+    image: /qr/miaowa-miniapp.jpg
+    caption: 扫码打开
+    icon: wechat
 actions:
   - label: 访问站点
     icon: link
     href: https://miaowa.sugarat.top/docs/
-  - label: 联系作者
-    icon: mail
+  - label: 购买源码
+    icon: cart
     type: modal
-    modalTitle: 联系作者
+    modalTitle: 购买源码
     modalContent: |
-      欢迎通过博客或 GitHub 留言交流。
-      博客：https://sugarat.top
-      GitHub：https://github.com/ATQQ
+      小程序、App、后端与管理后台全套源码，扫码加微信咨询。
+      添加时备注「妙蛙源码」。
+    modalImage: /wechat-qr.png
+  # - label: 联系作者
+  #   icon: mail
+  #   type: modal
+  #   modalTitle: 联系作者
+  #   modalContent: |
+  #     欢迎通过博客或 GitHub 留言交流。
+  #     博客：https://sugarat.top
+  #     GitHub：https://github.com/ATQQ
 ---
 
 :::: tabs

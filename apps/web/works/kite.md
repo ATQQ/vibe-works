@@ -11,6 +11,7 @@ cover: /covers/kite.png
 tags: [Node.js, Bun, 开源, VibeCoding]
 featured: 5
 date: 2026-04-04
+version: '1.10.0'
 updated: 2026-10-14
 actions:
   - label: 访问站点

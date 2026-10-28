@@ -10,6 +10,7 @@ icon: https://photo.sugarat.top/favicon.ico
 cover: /covers/echo-trails.png
 tags: [Bun, Vue, Tauri, 开源, VibeCoding]
 date: 2024-10-31
+version: '0.9.5'
 updated: 2026-10-21
 actions:
   - label: GitHub

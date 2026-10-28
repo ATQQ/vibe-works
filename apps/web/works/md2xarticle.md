@@ -11,6 +11,7 @@ cover: /covers/md2xarticle.png
 tags: [Chrome, 开源, VibeCoding]
 featured: 6
 date: 2026-10-11
+version: '1.1.0'
 updated: 2026-10-22
 actions:
   - label: 访问站点

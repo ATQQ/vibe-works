@@ -51,6 +51,8 @@ export interface ActionItem {
   type?: 'link' | 'modal'
   modalTitle?: string
   modalContent?: string
+  /** Image shown under modalContent, e.g. a QR code */
+  modalImage?: string
 }
 
 /** Detail page right-rail media card (e.g. 小程序码). */

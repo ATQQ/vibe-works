@@ -253,6 +253,14 @@ html.dark .vw-nav a {
   gap: 8px;
 }
 
+.vw-modal-image {
+  display: block;
+  width: 200px;
+  height: 200px;
+  margin: 12px auto 0;
+  object-fit: contain;
+}
+
 .vw-action-stars {
   font-size: 13px;
   font-weight: 600;
@@ -1369,7 +1377,7 @@ html.dark img.vw-platform-icon[src*='apple'] {
   margin-top: 16px;
 }
 
-.vw-detail-head {
+.vw-detail-intro {
   display: grid;
   grid-template-columns: 84px minmax(0, 1fr);
   gap: 16px;
@@ -1408,8 +1416,8 @@ html.dark img.vw-platform-icon[src*='apple'] {
 .vw-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 14px;
-  margin: 12px 0 0;
+  gap: 8px;
+  margin: 18px 0 0;
   padding: 0;
   list-style: none;
   color: var(--vw-muted);
@@ -1419,20 +1427,26 @@ html.dark img.vw-platform-icon[src*='apple'] {
 .vw-meta li {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  height: 26px;
+  padding: 0 10px;
+  border: 1px solid var(--vw-border);
+  border-radius: 999px;
+  background: var(--vw-card);
   line-height: 1;
+  font-variant-numeric: tabular-nums;
 }
 
 .vw-meta-icon {
   display: inline-flex;
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   flex: none;
 }
 
 .vw-meta-icon :is(svg) {
-  width: 15px;
-  height: 15px;
+  width: 13px;
+  height: 13px;
   display: block;
 }
 
@@ -1448,7 +1462,7 @@ html.dark img.vw-platform-icon[src*='apple'] {
   font-size: 12px;
 }
 
-.vw-detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.vw-detail-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
 
 .vw-block-title {
   margin: 26px 0 10px;
@@ -1851,7 +1865,7 @@ html.dark .vw-plan-badge { color: #f6c27a; background: #3a2a12; }
   }
   .vw-marquee-item { width: 12.5rem; }
   .vw-metrics { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .vw-detail-head { grid-template-columns: 64px minmax(0, 1fr); }
+  .vw-detail-intro { grid-template-columns: 64px minmax(0, 1fr); }
   .vw-appicon { width: 64px; height: 64px; border-radius: 16px; font-size: 26px; }
   .vw-rail-card {
     grid-template-columns: minmax(0, 1fr) auto;
