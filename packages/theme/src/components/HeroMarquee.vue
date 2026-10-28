@@ -83,9 +83,12 @@ function looped(row: CatalogItem[]) {
         class="vw-marquee-item"
         :data-copy="index >= row.length ? '1' : '0'"
         :aria-hidden="index >= row.length ? 'true' : undefined"
-        :inert="index >= row.length ? true : undefined"
       >
-        <ProductCard :item="item" variant="mini" />
+        <ProductCard
+          :item="item"
+          variant="mini"
+          :tabindex="index >= row.length ? -1 : undefined"
+        />
       </li>
     </ul>
   </div>
