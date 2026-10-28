@@ -10,6 +10,7 @@ icon: https://imgbed.sugarat.top/favicon.ico
 cover: /covers/imgbed.png
 tags: [Vue, 开源]
 date: 2019-12-31
+updated: 2026-08-23
 actions:
   - label: 访问站点
     icon: link

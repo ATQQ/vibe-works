@@ -8,9 +8,10 @@ platforms: [Windows, macOS, CLI]
 accent: sea
 icon: /icons/juejin-usage.png
 cover: /covers/juejin-usage.png
-tags: [React, Electron, Tauri, 开源]
+tags: [React, Electron, Tauri, 开源, VibeCoding]
 featured: 2
 date: 2026-08-13
+updated: 2026-10-24
 actions:
   - label: 访问站点
     icon: link

@@ -8,8 +8,9 @@ platforms: [Web]
 accent: amber
 icon: /icons/uploader.svg
 cover: /covers/image-uploader.png
-tags: [Vue, Nuxt, 开源]
+tags: [Vue, Nuxt, 开源, VibeCoding]
 date: 2025-05-11
+updated: 2026-03-01
 actions:
   - label: 访问站点
     icon: link

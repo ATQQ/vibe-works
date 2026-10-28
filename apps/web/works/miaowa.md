@@ -8,9 +8,11 @@ platforms: [Web, Android, 小程序]
 accent: mint
 icon: https://miaowa.sugarat.top/favicon.ico
 cover: /covers/miaowa.png
-tags: [小程序, Vue]
+tags: [小程序, Vue, VibeCoding]
 featured: 1
 date: 2026-08-17
+updated: 2026-10-25
+repo: ATQQ/smart-expense-app
 railCard:
   title: 微信小程序
   text: 微信扫码即可打开，在微信里记账

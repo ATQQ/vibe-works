@@ -8,8 +8,9 @@ platforms: [Windows, macOS, Android]
 accent: lilac
 icon: https://photo.sugarat.top/favicon.ico
 cover: /covers/echo-trails.png
-tags: [Bun, Vue, Tauri, 开源]
+tags: [Bun, Vue, Tauri, 开源, VibeCoding]
 date: 2024-10-31
+updated: 2026-10-21
 actions:
   - label: GitHub
     icon: github

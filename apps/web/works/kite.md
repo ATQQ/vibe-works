@@ -8,9 +8,10 @@ platforms: [CLI, Web]
 accent: mint
 icon: https://docs.kite.sugarat.top/logo.svg
 cover: /covers/kite.png
-tags: [Node.js, Bun, 开源]
+tags: [Node.js, Bun, 开源, VibeCoding]
 featured: 5
 date: 2026-04-04
+updated: 2026-10-14
 actions:
   - label: 访问站点
     icon: link
