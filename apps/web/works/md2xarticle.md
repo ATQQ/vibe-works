@@ -10,7 +10,7 @@ icon: /icons/md2xarticle.png
 cover: /covers/md2xarticle.png
 tags: [Chrome, 开源]
 featured: 6
-order: 10
+date: 2026-10-11
 actions:
   - label: 访问站点
     icon: link

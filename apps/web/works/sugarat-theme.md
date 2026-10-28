@@ -10,7 +10,7 @@ icon: https://theme.sugarat.top/logo.png
 cover: /covers/sugarat-theme.png
 tags: [Vitepress, Vue, 开源]
 featured: 3
-order: 40
+date: 2023-01-29
 actions:
   - label: 访问站点
     icon: link

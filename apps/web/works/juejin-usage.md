@@ -10,7 +10,7 @@ icon: /icons/juejin-usage.png
 cover: /covers/juejin-usage.png
 tags: [React, Electron, Tauri, 开源]
 featured: 2
-order: 30
+date: 2026-08-13
 actions:
   - label: 访问站点
     icon: link

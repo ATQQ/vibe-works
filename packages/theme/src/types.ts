@@ -23,6 +23,8 @@ export interface CatalogItem {
   tags: string[]
   /** 精选排序权重；未配置则不在首页精选展示 */
   featured?: number
+  /** 上线时间 YYYY-MM-DD */
+  date?: string
   order: number
   stats?: CatalogStats
 }

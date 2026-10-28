@@ -10,7 +10,13 @@ icon: https://docs.ep.sugarat.top/logo.png
 cover: /covers/easypicker.png
 tags: [Vue, Node.js, 开源]
 featured: 4
-order: 50
+date: 2021-04-03
+railCard:
+  title: 加微信
+  text: 私有化部署遇到问题、定制开发，扫码加我微信
+  image: /wechat-qr.png
+  caption: 备注「EasyPicker」
+  icon: wechat
 actions:
   - label: 访问站点
     icon: link

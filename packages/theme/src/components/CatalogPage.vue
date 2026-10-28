@@ -101,7 +101,6 @@ const filtered = computed(() => {
         </div>
       </div>
     </div>
-    <p class="vw-result-meta">共 {{ filtered.length }} 件 · 筛选只发生在这台浏览器里</p>
     <div v-if="filtered.length" class="vw-grid">
       <ProductCard v-for="item in filtered" :key="item.url" :item="item" />
     </div>

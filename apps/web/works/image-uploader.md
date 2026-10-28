@@ -9,7 +9,7 @@ accent: amber
 icon: /icons/uploader.svg
 cover: /covers/image-uploader.png
 tags: [Vue, Nuxt, 开源]
-order: 90
+date: 2025-05-11
 actions:
   - label: 访问站点
     icon: link
@@ -25,6 +25,8 @@ actions:
 ![](/covers/image-uploader.png)
 
 简易的动态图片上传/加载，如微信群二维码场景。
+
+测试密码 `testpwd`
 
 :::
 ::::

@@ -23,7 +23,15 @@ export interface CatalogItem {
   tags: string[]
   /** 精选排序权重；未配置则不在首页精选展示 */
   featured?: number
+  /** 上线时间 YYYY-MM-DD，列表默认按它倒序 */
+  date?: string
   order: number
+}
+
+function normalizeDate(raw: unknown): string | undefined {
+  if (raw == null || raw === '') return undefined
+  const date = raw instanceof Date ? raw : new Date(String(raw))
+  return Number.isNaN(date.getTime()) ? undefined : date.toISOString().slice(0, 10)
 }
 
 function normalizePlatforms(raw: unknown): PlatformInput[] {
@@ -70,9 +78,10 @@ export default createContentLoader('**/*.md', {
             frontmatter.featured != null && frontmatter.featured !== false && Number.isFinite(Number(frontmatter.featured))
               ? Number(frontmatter.featured)
               : undefined,
+          date: normalizeDate(frontmatter.date),
           order: Number(frontmatter.order ?? 0),
         }
       })
-      .sort((a, b) => a.order - b.order)
+      .sort((a, b) => (b.date ?? '').localeCompare(a.date ?? '') || a.order - b.order)
   },
 })

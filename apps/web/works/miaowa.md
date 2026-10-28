@@ -10,7 +10,7 @@ icon: https://miaowa.sugarat.top/favicon.ico
 cover: /covers/miaowa.png
 tags: [小程序, Vue]
 featured: 1
-order: 20
+date: 2026-08-17
 railCard:
   title: 微信小程序
   text: 微信扫码即可打开，在微信里记账

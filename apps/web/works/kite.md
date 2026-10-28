@@ -2,7 +2,7 @@
 title: Kite
 kind: detail
 catalog: work
-summary: 安装一个 CLI，就能启动 Web 管理端、Server 代理后端和部署上传能力。
+summary: 安装一个 CLI，就能启动一个持续集成的服务。
 category: Web应用
 platforms: [CLI, Web]
 accent: mint
@@ -10,7 +10,7 @@ icon: https://docs.kite.sugarat.top/logo.svg
 cover: /covers/kite.png
 tags: [Node.js, Bun, 开源]
 featured: 5
-order: 70
+date: 2026-04-04
 actions:
   - label: 访问站点
     icon: link
@@ -25,7 +25,9 @@ actions:
 
 ![](/covers/kite.png)
 
-安装一个 CLI，就能启动 Web 管理端、Server 代理后端和部署上传能力。
+安装一个 CLI，就能启动一个持续集成的服务。
+
+搭配 VibeCoding 轻松的实现本地项目的部署与回滚，日志监控等。
 
 :::
 ::::

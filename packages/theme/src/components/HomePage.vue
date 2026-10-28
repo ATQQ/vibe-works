@@ -15,9 +15,7 @@ const { frontmatter } = useData()
 const home = computed(() => (frontmatter.value.home ?? {}) as HomeCopy)
 
 const stage = computed(() =>
-  [...props.catalog]
-    .filter((item) => item.catalog === 'work')
-    .sort((a, b) => a.order - b.order),
+  props.catalog.filter((item) => item.catalog === 'work'),
 )
 const featured = computed(() =>
   [...props.catalog]

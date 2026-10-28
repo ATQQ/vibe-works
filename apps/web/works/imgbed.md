@@ -9,7 +9,7 @@ accent: clay
 icon: https://imgbed.sugarat.top/favicon.ico
 cover: /covers/imgbed.png
 tags: [Vue, 开源]
-order: 80
+date: 2019-12-31
 actions:
   - label: 访问站点
     icon: link
