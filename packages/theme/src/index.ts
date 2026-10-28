@@ -3,6 +3,7 @@ import { setup } from '@css-render/vue3-ssr'
 import type { App } from 'vue'
 import CatalogPage from './components/CatalogPage.vue'
 import HomePage from './components/HomePage.vue'
+import NotFound from './components/NotFound.vue'
 import ServicesPage from './components/ServicesPage.vue'
 import SpacePage from './components/SpacePage.vue'
 import TideDemo from './components/TideDemo.vue'
@@ -37,6 +38,7 @@ function installCssRender(app: App) {
 
 const theme = {
   Layout,
+  NotFound,
   enhanceApp({ app }) {
     if (import.meta.env.SSR || typeof window === 'undefined') {
       installCssRender(app)
