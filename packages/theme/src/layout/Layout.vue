@@ -18,6 +18,8 @@ onMounted(() => {
 const isDetail = computed(() => frontmatter.value.kind === 'detail')
 const isPlain = computed(() => frontmatter.value.plain === true || page.value.isNotFound)
 
+const dark = computed(() => mounted.value && isDark.value)
+
 const overrides = computed<GlobalThemeOverrides>(() => ({
   common: {
     primaryColor: '#1DA350',
@@ -26,6 +28,7 @@ const overrides = computed<GlobalThemeOverrides>(() => ({
     primaryColorSuppl: '#1DA350',
     borderRadius: '10px',
     fontFamily: '"Bricolage Grotesque Variable", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif',
+    ...(dark.value ? { cardColor: '#141a24', modalColor: '#141a24', popoverColor: '#1c2533' } : {}),
   },
   Button: {
     fontWeight: '700',
@@ -34,20 +37,27 @@ const overrides = computed<GlobalThemeOverrides>(() => ({
     heightMedium: '36px',
     heightLarge: '44px',
   },
-  Tag: {
-    color: '#eef8f2',
-    textColor: '#147439',
-    borderRadius: '999px',
-  },
-  Tabs: {
-    tabTextColorLine: '#616875',
-    tabTextColorActiveLine: '#1d6ef5',
-    tabTextColorHoverLine: '#1d6ef5',
-    barColor: '#1d6ef5',
-  },
+  Tag: dark.value
+    ? { color: '#163228', textColor: '#7fe0a4', borderRadius: '999px' }
+    : { color: '#eef8f2', textColor: '#147439', borderRadius: '999px' },
+  Tabs: dark.value
+    ? {
+        tabTextColorLine: '#a3acb9',
+        tabTextColorActiveLine: '#7aabff',
+        tabTextColorHoverLine: '#7aabff',
+        barColor: '#7aabff',
+        tabBorderColor: '#263140',
+      }
+    : {
+        tabTextColorLine: '#616875',
+        tabTextColorActiveLine: '#1d6ef5',
+        tabTextColorHoverLine: '#1d6ef5',
+        barColor: '#1d6ef5',
+        tabBorderColor: '#e6e8ee',
+      },
 }))
 
-const naiveTheme = computed(() => (mounted.value && isDark.value ? darkTheme : null))
+const naiveTheme = computed(() => (dark.value ? darkTheme : null))
 const isSsr = import.meta.env.SSR
 
 const SsrMarkers = defineComponent({

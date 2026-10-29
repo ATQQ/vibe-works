@@ -1,10 +1,9 @@
 import { onMounted, ref } from 'vue'
 
 const STORAGE_KEY = 'vw-theme'
+const isDark = ref(false)
 
 export function useThemeMode() {
-  const isDark = ref(false)
-
   function apply(dark: boolean) {
     isDark.value = dark
     if (typeof document !== 'undefined') {
