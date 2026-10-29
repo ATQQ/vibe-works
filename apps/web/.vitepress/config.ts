@@ -7,6 +7,7 @@ export default withThemeConfig({
       La51Plugin({
         id: 'LMgoT8Y87kjkB0NU',
         ck: 'LMgoT8Y87kjkB0NU',
+        importMode: 'async',
       }),
     ],
   },

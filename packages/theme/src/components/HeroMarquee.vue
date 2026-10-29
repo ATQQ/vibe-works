@@ -1,64 +1,63 @@
 <script setup lang="ts">
-import { onMounted, shallowRef, watch } from 'vue'
+import { computed, onMounted, shallowRef, watch } from 'vue'
 import type { CatalogItem } from '../types'
 import ProductCard from './ProductCard.vue'
+import {
+  ORDER_KEY,
+  arrangeRows,
+  marqueeBootScript,
+  shuffleIndices,
+} from './marquee-order'
 
 const props = defineProps<{ items: CatalogItem[] }>()
 
 /**
- * Two rows scroll opposite directions.
- * When there are enough works, rows are a disjoint split so top/bottom don't repeat.
- * Order is shuffled on each visit (client).
+ * Two rows scroll opposite directions, order shuffled on each visit.
+ * SSG HTML ships a stable order; the inline boot script shuffles the DOM
+ * before hydration and hands the order over via window, so there's no reflow.
  */
-const rows = shallowRef<CatalogItem[][]>([])
+let needsShuffleOnMount = false
 
-function shuffle<T>(list: T[]): T[] {
-  const arr = [...list]
-  for (let i = arr.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[arr[i], arr[j]] = [arr[j], arr[i]]
+function identity(count: number) {
+  return Array.from({ length: count }, (_, i) => i)
+}
+
+function initialOrder(count: number): number[] {
+  if (import.meta.env.SSR) return identity(count)
+  const w = window as unknown as Record<string, number[] | undefined>
+  const injected = w[ORDER_KEY]
+  if (injected) {
+    delete w[ORDER_KEY]
+    if (injected.length === count) return injected
   }
-  return arr
-}
-
-function partition(items: CatalogItem[]): CatalogItem[][] {
-  if (!items.length) return []
-  if (items.length === 1) return [items]
-
-  // ≥4：上下各一半，互不重复
-  if (items.length >= 4) {
-    const mid = Math.ceil(items.length / 2)
-    return [items.slice(0, mid), items.slice(mid)]
+  // Hydrating without boot script result: match SSR, shuffle after mount.
+  if (document.querySelector('.vw-marquee')) {
+    needsShuffleOnMount = true
+    return identity(count)
   }
-
-  // 2–3 件不够铺两行：允许上下都出现，错开一位减少同步感
-  const [first, ...rest] = items
-  return [items, [...rest, first]]
+  return shuffleIndices(count)
 }
 
-function rebuild() {
-  rows.value = partition(shuffle(props.items))
-}
+const order = shallowRef(initialOrder(props.items.length))
 
-// SSG 首屏用稳定切分，避免空白；挂载后再随机
-function ssrPartition(items: CatalogItem[]): CatalogItem[][] {
-  if (!items.length) return []
-  if (items.length === 1) return [items]
-  if (items.length >= 4) {
-    const mid = Math.ceil(items.length / 2)
-    return [items.slice(0, mid), items.slice(mid)]
-  }
-  const [first, ...rest] = items
-  return [items, [...rest, first]]
-}
+const rows = computed(() =>
+  arrangeRows(order.value).map((row) =>
+    row.map((i) => ({ index: i, item: props.items[i] })),
+  ),
+)
 
-rows.value = ssrPartition(props.items)
-
-onMounted(rebuild)
-watch(() => props.items, rebuild)
+onMounted(() => {
+  if (needsShuffleOnMount) order.value = shuffleIndices(props.items.length)
+})
+watch(
+  () => props.items,
+  (items) => {
+    order.value = shuffleIndices(items.length)
+  },
+)
 
 /** Paint each row twice so translateX(-50%) loops without a jump. */
-function looped(row: CatalogItem[]) {
+function looped<T>(row: T[]) {
   return row.concat(row)
 }
 </script>
@@ -69,6 +68,7 @@ function looped(row: CatalogItem[]) {
     class="vw-marquee"
     role="region"
     :aria-label="`作品滚动展示，${items.length} 款`"
+    :data-count="items.length"
   >
     <ul
       v-for="(row, rowIndex) in rows"
@@ -78,18 +78,20 @@ function looped(row: CatalogItem[]) {
       :style="{ '--count': String(row.length) }"
     >
       <li
-        v-for="(item, index) in looped(row)"
-        :key="`${rowIndex}-${item.url}-${index}`"
+        v-for="(entry, index) in looped(row)"
+        :key="`${rowIndex}-${entry.item.url}-${index}`"
         class="vw-marquee-item"
+        :data-i="entry.index"
         :data-copy="index >= row.length ? '1' : '0'"
         :aria-hidden="index >= row.length ? 'true' : undefined"
       >
         <ProductCard
-          :item="item"
+          :item="entry.item"
           variant="mini"
           :tabindex="index >= row.length ? -1 : undefined"
         />
       </li>
     </ul>
+    <div hidden v-html="marqueeBootScript" />
   </div>
 </template>
