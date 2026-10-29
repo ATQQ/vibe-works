@@ -2,7 +2,7 @@
 title: Vibe 作品集
 kind: detail
 catalog: work
-summary: 就是你正在看的这个站点：基于 VitePress 的作品集模板，写 Markdown 就能上架作品。
+summary: 就是你正在看的这个站点：基于 VitePress 的作品集模板，写 Markdown 就能上架作品，纯静态。
 category: Web应用
 platforms: [Web]
 accent: lilac
@@ -12,11 +12,12 @@ tags: [VitePress, Vue, VibeCoding]
 date: 2026-10-22
 version: '0.1.0'
 updated: 2026-10-29
+featured: 6
 actions:
   - label: 访问站点
     icon: link
     href: https://vibework.sugarat.top
-  - label: 购买模板
+  - label: 9.9购买模板
     icon: cart
     type: modal
     modalTitle: 购买模板
