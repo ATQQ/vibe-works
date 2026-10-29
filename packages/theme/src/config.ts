@@ -81,10 +81,15 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
     postRender(context) {
       const styleRegex = /<css-render-style>([\s\S]*?)<\/css-render-style>/
       const pathRegex = /<vitepress-path data-path="([^"]*)">[\s\S]*?<\/vitepress-path>/
+      // Client renders `<SsrMarkers v-if>` as a single comment, so the SSR fragment wrapper must collapse to one too.
+      const markersRegex = /<!--\[--><css-render-style>[\s\S]*?<\/vitepress-path><!--\]-->/
       const style = styleRegex.exec(context.content)?.[1]
       const key = pathRegex.exec(context.content)?.[1]
       if (style && key) collectedStyles.set(key, style)
-      context.content = context.content.replace(styleRegex, '').replace(pathRegex, '')
+      context.content = context.content
+        .replace(markersRegex, '<!---->')
+        .replace(styleRegex, '')
+        .replace(pathRegex, '')
       return user.postRender?.(context)
     },
     async transformHtml(code, id, ctx) {
