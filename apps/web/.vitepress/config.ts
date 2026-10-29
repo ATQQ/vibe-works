@@ -60,6 +60,13 @@ export default withThemeConfig({
         qrContent: 'https://v.douyin.com/OVyq9nzuXhM/',
         qrTitle: '抖音',
       },
+      {
+        icon: 'zhihu',
+        label: '知乎',
+        link: 'https://www.zhihu.com/people/rose-72-9',
+        qrContent: 'https://www.zhihu.com/people/rose-72-9',
+        qrTitle: '知乎',
+      },
     ],
     footerContact: {
       title: '绿泡泡联系我',

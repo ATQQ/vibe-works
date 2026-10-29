@@ -1207,12 +1207,20 @@ html.dark img.vw-platform-icon[src*='apple'] {
   color: var(--vw-fg);
   cursor: pointer;
   text-decoration: none;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.vw-channel.is-link:hover,
+.vw-channel.is-link:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.35);
 }
 
 .vw-channel.is-wechat { background: #07c160; }
 .vw-channel.is-bilibili { background: #fb7299; }
 .vw-channel.is-xiaohongshu { background: #ff2442; }
 .vw-channel.is-douyin { background: #111; }
+.vw-channel.is-zhihu { background: #0084ff; }
 
 .vw-channel-icon {
   width: 18px;
@@ -1224,7 +1232,8 @@ html.dark img.vw-platform-icon[src*='apple'] {
 .vw-channel.is-wechat .vw-channel-icon,
 .vw-channel.is-bilibili .vw-channel-icon,
 .vw-channel.is-xiaohongshu .vw-channel-icon,
-.vw-channel.is-douyin .vw-channel-icon {
+.vw-channel.is-douyin .vw-channel-icon,
+.vw-channel.is-zhihu .vw-channel-icon {
   filter: brightness(0) invert(1);
 }
 
@@ -1293,6 +1302,24 @@ html.dark img.vw-platform-icon[src*='apple'] {
   color: var(--vw-muted);
   font-size: 12px;
   line-height: 1.4;
+}
+
+.vw-channel.is-link:hover .vw-channel-qr-title {
+  color: var(--vw-fg);
+}
+
+.vw-channel-qr-go {
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vw-channel {
+    transition: none;
+  }
+  .vw-channel.is-link:hover,
+  .vw-channel.is-link:focus-visible {
+    transform: none;
+  }
 }
 
 .vw-footer-bar {

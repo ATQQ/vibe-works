@@ -35,7 +35,7 @@ export default withThemeConfig({
     footerChannelsLabel: '关注我',
     footerChannels: [
       {
-        icon: 'wechat', // douyin | bilibili | xiaohongshu | wechat / 公众号
+        icon: 'wechat', // douyin | bilibili | xiaohongshu | zhihu | wechat / 公众号
         qrImage: 'https://example.com/qr.png', // 或 qrContent: 'https://...'
         qrTitle: '关注公众号',
       },

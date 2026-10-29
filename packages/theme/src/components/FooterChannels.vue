@@ -23,7 +23,7 @@ const title = computed(() => props.label?.trim() || '')
         <component
           :is="item.link ? 'a' : 'button'"
           class="vw-channel"
-          :class="`is-${item.tone}`"
+          :class="[`is-${item.tone}`, { 'is-link': item.link }]"
           :href="item.link || undefined"
           :type="item.link ? undefined : 'button'"
           :target="item.link ? '_blank' : undefined"
@@ -41,7 +41,9 @@ const title = computed(() => props.label?.trim() || '')
 
           <span v-if="item.qrSrc" class="vw-channel-pop" role="tooltip">
             <img class="vw-channel-qr" :src="item.qrSrc" :alt="`${item.label} 二维码`" width="148" height="148" />
-            <span v-if="item.qrTitle" class="vw-channel-qr-title">{{ item.qrTitle }}</span>
+            <span v-if="item.qrTitle || item.link" class="vw-channel-qr-title">
+              {{ item.qrTitle || item.label }}<span v-if="item.link" class="vw-channel-qr-go" aria-hidden="true"> ↗</span>
+            </span>
           </span>
         </component>
       </li>

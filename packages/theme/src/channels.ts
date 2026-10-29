@@ -2,6 +2,7 @@ import bilibiliUrl from './assets/channels/bilibili.svg?url'
 import douyinUrl from './assets/channels/douyin.svg?url'
 import wechatUrl from './assets/channels/wechat.svg?url'
 import xiaohongshuUrl from './assets/channels/xiaohongshu.svg?url'
+import zhihuUrl from './assets/channels/zhihu.svg?url'
 import type { FooterChannel } from './types'
 
 const builtIn: Record<string, string> = {
@@ -14,6 +15,8 @@ const builtIn: Record<string, string> = {
   xiaohongshu: xiaohongshuUrl,
   小红书: xiaohongshuUrl,
   red: xiaohongshuUrl,
+  zhihu: zhihuUrl,
+  知乎: zhihuUrl,
   wechat: wechatUrl,
   weixin: wechatUrl,
   微信: wechatUrl,
@@ -26,6 +29,7 @@ const labels: Record<string, string> = {
   bilibili: 'Bilibili',
   douyin: '抖音',
   xiaohongshu: '小红书',
+  zhihu: '知乎',
   wechat: '公众号',
   weixin: '公众号',
   公众号: '公众号',
@@ -47,6 +51,7 @@ function toneFor(key: string): string {
   if (key.includes('bili') || key === 'b站' || key === '哔哩哔哩') return 'bilibili'
   if (key.includes('douyin') || key.includes('抖音') || key.includes('tiktok')) return 'douyin'
   if (key.includes('xiao') || key.includes('小红') || key === 'red') return 'xiaohongshu'
+  if (key.includes('zhihu') || key.includes('知乎')) return 'zhihu'
   if (key.includes('wechat') || key.includes('wei') || key.includes('公众') || key.includes('gong')) return 'wechat'
   return 'neutral'
 }
