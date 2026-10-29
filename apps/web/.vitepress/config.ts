@@ -1,6 +1,15 @@
 import { withThemeConfig } from '@vibe-works/vitepress-theme/config'
+import { La51Plugin } from 'vitepress-plugin-51la'
 
 export default withThemeConfig({
+  vite: {
+    plugins: [
+      La51Plugin({
+        id: 'LMgoT8Y87kjkB0NU',
+        ck: 'LMgoT8Y87kjkB0NU',
+      }),
+    ],
+  },
   title: '粥里有勺糖 - 作品集',
   description:
     '粥里有勺糖的个人作品集：收录 App、CLI、网站与开源工具，含介绍、适用场景与 GitHub / 独立站入口，方便快速了解与试用。',

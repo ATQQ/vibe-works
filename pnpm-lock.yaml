@@ -23,6 +23,9 @@ importers:
       vitepress:
         specifier: next
         version: 2.0.0-alpha.20(async-validator@4.2.5)(esbuild@0.28.2)(postcss@8.5.31)(typescript@5.9.3)
+      vitepress-plugin-51la:
+        specifier: ^0.1.2
+        version: 0.1.2(vitepress@2.0.0-alpha.20(async-validator@4.2.5)(esbuild@0.28.2)(postcss@8.5.31)(typescript@5.9.3))
 
   packages/theme:
     dependencies:
@@ -1278,6 +1281,11 @@ packages:
       yaml:
         optional: true
 
+  vitepress-plugin-51la@0.1.2:
+    resolution: {integrity: sha512-MMeWIh3CPtOFycvYUVzRzfaIUUz9vp1Gp8XvKh7yxRaANx9JZbaUy7LbGw7W3/sAzAt4KwWcstCCLO1EWKy/KQ==}
+    peerDependencies:
+      vitepress: ^1.0.0-0 || ^2.0.0-0
+
   vitepress@2.0.0-alpha.20:
     resolution: {integrity: sha512-uQWKmP9PaBkf9zxHn0iOml/ZPPDaGKqQXVMBHz3yjwyyd9Eg+BKLGxbqmOGlfOMCt6Fj8TLiAnE59qlKZ0A3xw==}
     hasBin: true
@@ -2302,6 +2310,10 @@ snapshots:
     optionalDependencies:
       esbuild: 0.28.2
       fsevents: 2.3.3
+
+  vitepress-plugin-51la@0.1.2(vitepress@2.0.0-alpha.20(async-validator@4.2.5)(esbuild@0.28.2)(postcss@8.5.31)(typescript@5.9.3)):
+    dependencies:
+      vitepress: 2.0.0-alpha.20(async-validator@4.2.5)(esbuild@0.28.2)(postcss@8.5.31)(typescript@5.9.3)
 
   vitepress@2.0.0-alpha.20(async-validator@4.2.5)(esbuild@0.25.12)(postcss@8.5.31)(typescript@5.9.3):
     dependencies:
