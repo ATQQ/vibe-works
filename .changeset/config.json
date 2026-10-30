@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
+  "baseBranch": "main",
+  "access": "public",
+  "fixed": [["@sugarat/vitepress-theme-vibework", "@sugarat/create-vibework"]],
+  "linked": [],
+  "ignore": [],
+  "privatePackages": false,
+  "updateInternalDependencies": "patch",
+  "commit": false,
+  "changelog": "@changesets/cli/changelog"
+}

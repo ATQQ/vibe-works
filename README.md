@@ -113,12 +113,15 @@ export default Theme
 
 ## 发布
 
+用 [Changesets](https://github.com/changesets/changesets) 管理版本，主题与脚手架固定同版本发布。
+
 ```bash
-pnpm --filter @sugarat/vitepress-theme-vibework publish
-pnpm --filter @sugarat/create-vibework publish
+pnpm changeset          # 记录改动：选包、选 patch / minor / major、写说明
+pnpm version-packages   # 升版本、写 CHANGELOG，并同步模板里的主题版本
+pnpm release            # 构建所有包，发布 npm 上还没有的版本
 ```
 
-主题的 `prepack` 会先构建 `dist`。主题升级大版本时，同步改 `packages/create-vibework/template/package.json` 里的主题版本。
+`version-packages` 之后提交改动，`release` 之后推送 tag：`git push --follow-tags`。
 
 ## 许可
 
