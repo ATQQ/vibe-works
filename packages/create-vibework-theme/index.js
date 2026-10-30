@@ -70,7 +70,8 @@ try {
   }
 
   const pm = packageManager()
-  const cd = relative(process.cwd(), root)
+  const rel = relative(process.cwd(), root)
+  const cd = rel.startsWith('..') ? root : rel
   console.log(`\n已创建 ${root}\n`)
   if (cd) console.log(`  cd ${cd.includes(' ') ? `"${cd}"` : cd}`)
   console.log(`  ${pm} install`)

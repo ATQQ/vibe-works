@@ -111,6 +111,15 @@ export default Theme
 - Naive UI 在 SSR 里要放进 `ssr.noExternal`，连带 `date-fns`、`vueuc`、`seemly`、`vooks`、`vdirs`，`withThemeConfig` 已处理。
 - 官方 Naive UI + VitePress 示例用页面文件名当样式键，多个 `index.html` 会互相覆盖。这里改成按 markdown 相对路径对应。
 
+## 本地测试脚手架
+
+```bash
+pnpm try:create          # 生成到 /tmp 下的新目录
+pnpm try:create ~/demo   # 指定目录
+```
+
+按发布后的形态打包主题与脚手架，用脚手架生成项目并装上本地主题包，再 `npm run dev` 即可。
+
 ## 发布
 
 用 [Changesets](https://github.com/changesets/changesets) 管理版本，主题与脚手架固定同版本发布。
