@@ -1,4 +1,4 @@
-import { withThemeConfig } from '@vibe-works/vitepress-theme/config'
+import { withThemeConfig } from '@sugarat/vitepress-theme-vibework/config'
 import { La51Plugin } from 'vitepress-plugin-51la'
 
 export default withThemeConfig({

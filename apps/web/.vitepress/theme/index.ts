@@ -1,4 +1,4 @@
-import Theme from '@vibe-works/vitepress-theme'
-import '@vibe-works/vitepress-theme/style.css'
+import Theme from '@sugarat/vitepress-theme-vibework'
+import '@sugarat/vitepress-theme-vibework/style.css'
 
 export default Theme

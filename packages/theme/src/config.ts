@@ -14,7 +14,7 @@ const naivePackages = [
   'vdirs',
   'evtd',
   '@css-render/vue3-ssr',
-  '@vibe-works/vitepress-theme',
+  '@sugarat/vitepress-theme-vibework',
 ]
 
 /**
@@ -70,7 +70,7 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
         ...user.vite?.server,
       },
       optimizeDeps: {
-        exclude: ['@vibe-works/vitepress-theme'],
+        exclude: ['@sugarat/vitepress-theme-vibework'],
         ...user.vite?.optimizeDeps,
       },
       ssr: {

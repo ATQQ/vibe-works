@@ -8,7 +8,7 @@
 
 ```
 apps/web                 VitePress 内容与一份很薄的配置
-packages/theme           @vibe-works/vitepress-theme
+packages/theme           @sugarat/vitepress-theme-vibework
 ```
 
 ## 本地运行
@@ -30,7 +30,7 @@ pnpm --filter web preview
 `dev` / `build` 会先编译主题的配置入口（`dist/config.js`）。完整的主题检查：
 
 ```bash
-pnpm --filter @vibe-works/vitepress-theme build
+pnpm --filter @sugarat/vitepress-theme-vibework build
 ```
 
 ## 主题以后怎么卖

@@ -10,7 +10,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@vibe-works/vitepress-theme':
+      '@sugarat/vitepress-theme-vibework':
         specifier: workspace:*
         version: link:../../packages/theme
       vue:

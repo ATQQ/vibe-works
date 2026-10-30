@@ -17,13 +17,16 @@ actions:
   - label: 访问站点
     icon: link
     href: https://vibework.sugarat.top
-  - label: 9.9购买模板
-    icon: cart
+  - label: GitHub
+    icon: github
+    href: https://github.com/ATQQ/vibe-works
+  - label: VitePress 主题定制咨询
+    icon: mail
     type: modal
-    modalTitle: 购买模板
+    modalTitle: VitePress 主题定制咨询
     modalContent: |
-      站点与主题全套源码，换上自己的作品即可部署。扫码加微信咨询。
-      添加时备注「作品集模板」。
+      主题本身免费开源。需要定制 VitePress 主题或站点，扫码加微信咨询。
+      添加时备注「主题定制」。
     modalImage: /wechat-qr.png
 ---
 

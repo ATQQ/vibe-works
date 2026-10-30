@@ -1,4 +1,4 @@
-# @vibe-works/vitepress-theme
+# @sugarat/vitepress-theme-vibework
 
 作品目录站用的 VitePress 主题：粘性导航、社交外链、作品卡片目录、详情页 MD tabs 与右侧 CTA。
 
@@ -8,7 +8,7 @@
 
 ```ts
 // .vitepress/config.ts
-import { withThemeConfig } from '@vibe-works/vitepress-theme/config'
+import { withThemeConfig } from '@sugarat/vitepress-theme-vibework/config'
 
 export default withThemeConfig({
   title: '你的目录',
@@ -62,8 +62,8 @@ export default withThemeConfig({
 
 ```ts
 // .vitepress/theme/index.ts
-import Theme from '@vibe-works/vitepress-theme'
-import '@vibe-works/vitepress-theme/style.css'
+import Theme from '@sugarat/vitepress-theme-vibework'
+import '@sugarat/vitepress-theme-vibework/style.css'
 
 export default Theme
 ```
@@ -138,7 +138,7 @@ platforms:
 包入口直接指向源码（`.ts` / `.vue`），让使用方的 VitePress 自己编译 `import.meta.env.SSR`。
 
 ```bash
-pnpm --filter @vibe-works/vitepress-theme build
+pnpm --filter @sugarat/vitepress-theme-vibework build
 ```
 
 开发和生产构建前都要先跑 `build:config`（产出 `dist/config.js`）。

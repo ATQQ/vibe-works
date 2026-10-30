@@ -10,7 +10,7 @@
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
     "preview": "pnpm --filter web preview",
-    "build:theme": "pnpm --filter @vibe-works/vitepress-theme build",
+    "build:theme": "pnpm --filter @sugarat/vitepress-theme-vibework build",
     "typecheck": "pnpm -r --if-present typecheck",
     "sync:updated": "node scripts/sync-updated.mjs"
   }
