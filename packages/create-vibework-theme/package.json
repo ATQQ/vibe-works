@@ -1,11 +1,11 @@
 {
-  "name": "@sugarat/create-vibework",
+  "name": "@sugarat/create-vibework-theme",
   "version": "0.1.0",
   "description": "Scaffold a works portfolio site with @sugarat/vitepress-theme-vibework.",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "create-vibework": "index.js"
+    "create-vibework-theme": "index.js"
   },
   "files": [
     "index.js",
@@ -22,6 +22,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ATQQ/vibe-works",
-    "directory": "packages/create-vibework"
+    "directory": "packages/create-vibework-theme"
   }
 }

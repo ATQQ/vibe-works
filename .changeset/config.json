@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/@changesets/config@4.0.1/schema.json",
   "baseBranch": "main",
   "access": "public",
-  "fixed": [["@sugarat/vitepress-theme-vibework", "@sugarat/create-vibework"]],
+  "fixed": [["@sugarat/vitepress-theme-vibework", "@sugarat/create-vibework-theme"]],
   "linked": [],
   "ignore": [],
   "privatePackages": false,

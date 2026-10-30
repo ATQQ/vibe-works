@@ -9,9 +9,9 @@
 ## 快速开始
 
 ```bash
-pnpm create @sugarat/vibework my-site
+pnpm create @sugarat/vibework-theme my-site
 # 或
-npm create @sugarat/vibework@latest my-site
+npm create @sugarat/vibework-theme@latest my-site
 ```
 
 ## 特性
@@ -27,10 +27,10 @@ npm create @sugarat/vibework@latest my-site
 ## 仓库结构
 
 ```
-apps/web                   作品集站点（内容与配置）
-packages/theme             主题包 @sugarat/vitepress-theme-vibework
-packages/create-vibework   脚手架 @sugarat/create-vibework
-scripts                    辅助脚本
+apps/web                         作品集站点（内容与配置）
+packages/theme                   主题包 @sugarat/vitepress-theme-vibework
+packages/create-vibework-theme   脚手架 @sugarat/create-vibework-theme
+scripts                          辅助脚本
 ```
 
 ## 本地开发

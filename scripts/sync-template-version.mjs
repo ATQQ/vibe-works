@@ -3,7 +3,7 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const themePkg = new URL('../packages/theme/package.json', import.meta.url)
-const templatePkg = new URL('../packages/create-vibework/template/package.json', import.meta.url)
+const templatePkg = new URL('../packages/create-vibework-theme/template/package.json', import.meta.url)
 
 const { name, version } = JSON.parse(readFileSync(themePkg, 'utf8'))
 const template = JSON.parse(readFileSync(templatePkg, 'utf8'))
