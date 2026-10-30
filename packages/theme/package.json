@@ -8,7 +8,6 @@
     "**/*.css"
   ],
   "files": [
-    "src",
     "dist",
     "README.md"
   ],
@@ -23,13 +22,28 @@
       "import": "./dist/config.js"
     }
   },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "./style.css": "./dist/styles/index.css",
+      "./config": {
+        "types": "./dist/config.d.ts",
+        "import": "./dist/config.js"
+      }
+    }
+  },
   "scripts": {
-    "build": "vue-tsc --noEmit && vite build && node scripts/build-config.mjs",
+    "build": "vue-tsc --noEmit && mkdist --src=src --dist=dist --ext=js --declaration",
     "typecheck": "vue-tsc --noEmit",
-    "build:config": "node scripts/build-config.mjs"
+    "build:config": "node scripts/build-config.mjs",
+    "prepack": "pnpm build"
   },
   "peerDependencies": {
-    "vitepress": ">=1.6.0",
+    "vitepress": "^1.6.0 || ^2.0.0-0",
     "vue": "^3.5.0"
   },
   "dependencies": {
@@ -41,12 +55,13 @@
   "devDependencies": {
     "@types/markdown-it": "^14.2.0",
     "@types/markdown-it-container": "^4.0.1",
-    "@vitejs/plugin-vue": "^6.0.1",
     "esbuild": "^0.25.10",
+    "mkdist": "^2.4.1",
     "typescript": "^5.9.3",
     "vite": "^7.1.9",
     "vitepress": "next",
     "vue": "^3.5.22",
+    "vue-sfc-transformer": "^0.1.17",
     "vue-tsc": "^3.1.1"
   }
 }

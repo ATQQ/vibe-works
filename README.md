@@ -57,7 +57,7 @@ pnpm --filter @sugarat/vitepress-theme-vibework build
 ## VitePress @next 上碰到的点
 
 - 官方 Naive UI + VitePress 示例用页面文件名当样式键，多个 `index.html` 会互相覆盖。这里改成按 `pageData.relativePath` 对应。
-- `import.meta.env.SSR` 必须由 VitePress 在编译主题源码时替换。所以包的默认入口是 `src`，不是预构建的客户端包。
+- `import.meta.env.SSR` 必须由 VitePress 在编译主题时替换，所以主题不能预先打成一个客户端包。仓库内入口指向 `src`；发布时照 VitePress 默认主题的做法用 mkdist 逐文件转成 `dist`：`.ts` 转 `.js`，`.vue` 只剥掉 TS，交给使用方的 Vite 编译。
 - Naive UI 在 SSR 里要放进 `ssr.noExternal`，连带 `date-fns`、`vueuc`、`seemly`、`vooks`、`vdirs`。
 - 配置文件跑在 Node 里，不能直接 import `.ts`。`withThemeConfig` 单独编成 `dist/config.js`。
 

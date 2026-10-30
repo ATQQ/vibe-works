@@ -29,14 +29,12 @@ export type {
 
 export { resolvePlatform, resolvePlatforms, platformIcons } from './platforms'
 
-export { withThemeConfig } from './config'
-
 function installCssRender(app: App) {
   const { collect } = setup(app)
   app.provide('vw-css-collect', collect)
 }
 
-const theme = {
+const theme: Theme = {
   Layout,
   NotFound,
   enhanceApp({ app }) {
@@ -51,6 +49,6 @@ const theme = {
     app.component('VWTabs', VWTabs)
     app.component('VWTab', VWTab)
   },
-} satisfies Theme
+}
 
 export default theme

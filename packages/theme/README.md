@@ -135,15 +135,15 @@ platforms:
 
 ## 发布
 
-包入口直接指向源码（`.ts` / `.vue`），让使用方的 VitePress 自己编译 `import.meta.env.SSR`。
-
 ```bash
-pnpm --filter @sugarat/vitepress-theme-vibework build
+pnpm --filter @sugarat/vitepress-theme-vibework publish
 ```
 
-开发和生产构建前都要先跑 `build:config`（产出 `dist/config.js`）。
+`prepack` 会先跑 `build`：mkdist 把 `src` 逐文件转到 `dist`，`.ts` 转 `.js`，`.vue` 保留 SFC 只剥掉 TS，并生成类型声明。和 VitePress 默认主题一样，`.vue` 与 `import.meta.env.SSR` 交给使用方的 Vite 编译，不预打包。
 
-消费方 peer：`vue@^3.5`、`vitepress@next`（或 1.6+）。
+仓库内 `exports` 指向 `src`，改主题无需构建；发布时由 `publishConfig.exports` 换成 `dist`。站点 `dev` / `build` 前的 `build:config` 只为本地产出 `dist/config.js`。
+
+消费方 peer：`vue@^3.5`、`vitepress@^1.6` 或 `vitepress@next`。
 
 ## 许可
 
