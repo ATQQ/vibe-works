@@ -6,6 +6,14 @@
 
 ![](apps/web/public/covers/vibe-works.png)
 
+## 快速开始
+
+```bash
+pnpm create @sugarat/vibework my-site
+# 或
+npm create @sugarat/vibework@latest my-site
+```
+
 ## 特性
 
 - 首页滚动卡片与精选作品
@@ -19,9 +27,10 @@
 ## 仓库结构
 
 ```
-apps/web          作品集站点（内容与配置）
-packages/theme    主题包 @sugarat/vitepress-theme-vibework
-scripts           辅助脚本
+apps/web                   作品集站点（内容与配置）
+packages/theme             主题包 @sugarat/vitepress-theme-vibework
+packages/create-vibework   脚手架 @sugarat/create-vibework
+scripts                    辅助脚本
 ```
 
 ## 本地开发
@@ -70,7 +79,7 @@ actions:
 
 `pnpm sync:updated` 会通过 `gh` CLI 读取各作品仓库的最近提交与版本号，加 `--write` 回写到 frontmatter。
 
-## 在自己的站点使用主题
+## 在已有站点里使用主题
 
 ```bash
 pnpm add @sugarat/vitepress-theme-vibework vitepress vue
@@ -102,13 +111,14 @@ export default Theme
 - Naive UI 在 SSR 里要放进 `ssr.noExternal`，连带 `date-fns`、`vueuc`、`seemly`、`vooks`、`vdirs`，`withThemeConfig` 已处理。
 - 官方 Naive UI + VitePress 示例用页面文件名当样式键，多个 `index.html` 会互相覆盖。这里改成按 markdown 相对路径对应。
 
-## 发布主题
+## 发布
 
 ```bash
 pnpm --filter @sugarat/vitepress-theme-vibework publish
+pnpm --filter @sugarat/create-vibework publish
 ```
 
-`prepack` 会先构建 `dist`。
+主题的 `prepack` 会先构建 `dist`。主题升级大版本时，同步改 `packages/create-vibework/template/package.json` 里的主题版本。
 
 ## 许可
 

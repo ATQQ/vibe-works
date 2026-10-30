@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "description": "VitePress theme for a works portfolio catalog. Chinese-first, Naive UI, SSG-ready.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ATQQ/vibe-works",
+    "directory": "packages/theme"
+  },
   "type": "module",
   "sideEffects": [
     "**/*.css"

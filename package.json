@@ -8,9 +8,10 @@
   },
   "scripts": {
     "dev": "pnpm --filter web dev",
-    "build": "pnpm --filter web build",
-    "preview": "pnpm --filter web preview",
+    "build": "pnpm -r build",
+    "build:web": "pnpm --filter web build",
     "build:theme": "pnpm --filter @sugarat/vitepress-theme-vibework build",
+    "preview": "pnpm --filter web preview",
     "typecheck": "pnpm -r --if-present typecheck",
     "sync:updated": "node scripts/sync-updated.mjs"
   }
