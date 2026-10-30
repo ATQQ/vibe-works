@@ -6,6 +6,10 @@
 
 ## 站点里怎么接
 
+```bash
+pnpm add @sugarat/vitepress-theme-vibework vitepress vue
+```
+
 ```ts
 // .vitepress/config.ts
 import { withThemeConfig } from '@sugarat/vitepress-theme-vibework/config'

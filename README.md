@@ -1,69 +1,115 @@
-# Vibe works
+# Vibe Works
 
-中文作品目录，外加还不能购买的服务占位。静态站点，用 VitePress 生成。
+基于 VitePress 的个人作品集站点与主题。每个作品一份 Markdown，写好就能上架，纯静态部署。
 
-视觉是浅色工具市场：粘性导航、大标题、作品卡片、四步说明、一笔示例报价，以及详情页右侧的档位栏。主题在 `packages/theme`，站点只通过包名引用它。
+在线预览：<https://vibework.sugarat.top>
 
-## 目录
+![](apps/web/public/covers/vibe-works.png)
+
+## 特性
+
+- 首页滚动卡片与精选作品
+- 作品目录：搜索、分类与标签筛选
+- 详情页：Markdown tabs、右侧操作按钮（外链 / 弹窗二维码）、小程序码卡片
+- GitHub 按钮自动显示 Star 数
+- 平台图标、页脚社交渠道与二维码
+- 深色模式、移动端适配
+- Naive UI 组件，SSG 时样式注入每页 `<head>`
+
+## 仓库结构
 
 ```
-apps/web                 VitePress 内容与一份很薄的配置
-packages/theme           @sugarat/vitepress-theme-vibework
+apps/web          作品集站点（内容与配置）
+packages/theme    主题包 @sugarat/vitepress-theme-vibework
+scripts           辅助脚本
 ```
 
-## 本地运行
+## 本地开发
 
 需要 Node.js 22+ 和 pnpm 10。
 
 ```bash
 pnpm install
-pnpm --filter web dev
+pnpm dev        # http://127.0.0.1:4391
+pnpm build
+pnpm preview
 ```
 
-开发地址：<http://127.0.0.1:4391>
+## 添加作品
+
+在 `apps/web/works/` 下新建一份 Markdown：
+
+```md
+---
+title: 作品名
+kind: detail
+catalog: work
+summary: 一句话介绍
+category: Web应用
+platforms: [Web]
+icon: /logo.svg
+cover: /covers/demo.png
+tags: [Vue]
+actions:
+  - label: 访问站点
+    icon: link
+    href: https://example.com
+  - label: GitHub
+    icon: github
+    href: https://github.com/you/repo
+---
+
+:::: tabs
+::: tab 概览
+介绍…
+:::
+::::
+```
+
+完整字段见 [主题文档](packages/theme/README.md)。
+
+`pnpm sync:updated` 会通过 `gh` CLI 读取各作品仓库的最近提交与版本号，加 `--write` 回写到 frontmatter。
+
+## 在自己的站点使用主题
 
 ```bash
-pnpm --filter web build
-pnpm --filter web preview
+pnpm add @sugarat/vitepress-theme-vibework vitepress vue
 ```
 
-`dev` / `build` 会先编译主题的配置入口（`dist/config.js`）。完整的主题检查：
+```ts
+// .vitepress/config.ts
+import { withThemeConfig } from '@sugarat/vitepress-theme-vibework/config'
+
+export default withThemeConfig({
+  title: '我的作品集',
+  themeConfig: { /* ... */ },
+})
+```
+
+```ts
+// .vitepress/theme/index.ts
+import Theme from '@sugarat/vitepress-theme-vibework'
+import '@sugarat/vitepress-theme-vibework/style.css'
+
+export default Theme
+```
+
+配置项与组件说明见 [packages/theme/README.md](packages/theme/README.md)，`apps/web` 是一份完整示例。
+
+## 实现说明
+
+- `import.meta.env.SSR` 需要由使用方的 VitePress 编译时替换，所以主题不预打包。仓库内入口指向 `src`；发布时照 VitePress 默认主题的做法用 mkdist 逐文件转到 `dist`：`.ts` 转 `.js`，`.vue` 只剥掉 TS。
+- Naive UI 在 SSR 里要放进 `ssr.noExternal`，连带 `date-fns`、`vueuc`、`seemly`、`vooks`、`vdirs`，`withThemeConfig` 已处理。
+- 官方 Naive UI + VitePress 示例用页面文件名当样式键，多个 `index.html` 会互相覆盖。这里改成按 markdown 相对路径对应。
+
+## 发布主题
 
 ```bash
-pnpm --filter @sugarat/vitepress-theme-vibework build
+pnpm --filter @sugarat/vitepress-theme-vibework publish
 ```
 
-## 主题以后怎么卖
+`prepack` 会先构建 `dist`。
 
-见 [packages/theme/README.md](packages/theme/README.md)。站点侧只保留：
+## 许可
 
-- `apps/web/.vitepress/config.ts` 调用 `withThemeConfig`
-- `apps/web/.vitepress/theme/index.ts` 导入默认主题和 `style.css`
-- markdown 与 `catalog.data.ts`
-
-## 页面
-
-| 路径 | 内容 |
-| --- | --- |
-| `/` | 首页 |
-| `/works/` | 作品目录，可搜索、按分类过滤 |
-| `/works/tide` | 案例详情，含页内演示 |
-| `/tools/` | 付费服务占位与本地等候邮箱 |
-| `/space/` | 我的空间，无登录无订单 |
-| `/en/` | 英文占位 |
-
-没有支付、账号或授权码。邮箱写在浏览器 `localStorage`。
-
-## VitePress @next 上碰到的点
-
-- 官方 Naive UI + VitePress 示例用页面文件名当样式键，多个 `index.html` 会互相覆盖。这里改成按 `pageData.relativePath` 对应。
-- `import.meta.env.SSR` 必须由 VitePress 在编译主题时替换，所以主题不能预先打成一个客户端包。仓库内入口指向 `src`；发布时照 VitePress 默认主题的做法用 mkdist 逐文件转成 `dist`：`.ts` 转 `.js`，`.vue` 只剥掉 TS，交给使用方的 Vite 编译。
-- Naive UI 在 SSR 里要放进 `ssr.noExternal`，连带 `date-fns`、`vueuc`、`seemly`、`vooks`、`vdirs`。
-- 配置文件跑在 Node 里，不能直接 import `.ts`。`withThemeConfig` 单独编成 `dist/config.js`。
-
-## 还没做
-
-- 真封面图（现在是按分类生成的界面示意）
-- 完整英文
-- 深色模式只做了变量和 Naive 主题切换，不是默认外观
-- 目录筛选不进静态 URL
+[MIT](LICENSE)
