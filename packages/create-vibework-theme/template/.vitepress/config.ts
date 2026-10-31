@@ -81,11 +81,12 @@ export default withThemeConfig({
       qrImage: '/wechat-qr.png',
     },
 
-    // 页脚底栏：版权 · 备案 · 链接
+    // 页脚底栏：版权 · 备案 · 链接 · 主题版本
     footerBar: {
       copyright: { text: '© ' + new Date().getFullYear() + ' {{title}}', link: '/' },
       // beian: { text: '京ICP备xxxxxxxx号', link: 'https://beian.miit.gov.cn/' },
       links: [{ text: '关于', link: '/about' }],
+      // themeVersion: false, // 隐藏右侧主题版本
     },
   },
 })

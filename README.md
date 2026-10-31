@@ -21,6 +21,7 @@ npm create @sugarat/vibework-theme@latest my-site
 - 详情页：Markdown tabs、右侧操作按钮（外链 / 弹窗二维码）、小程序码卡片
 - GitHub 按钮自动显示 Star 数
 - 平台图标、页脚社交渠道与二维码
+- 页脚底栏展示主题版本，可关闭
 - 深色模式、移动端适配
 - Naive UI 组件，SSG 时样式注入每页 `<head>`
 
@@ -109,6 +110,7 @@ export default Theme
 
 - `import.meta.env.SSR` 需要由使用方的 VitePress 编译时替换，所以主题不预打包。仓库内入口指向 `src`；发布时照 VitePress 默认主题的做法用 mkdist 逐文件转到 `dist`：`.ts` 转 `.js`，`.vue` 只剥掉 TS。
 - Naive UI 在 SSR 里要放进 `ssr.noExternal`，连带 `date-fns`、`vueuc`、`seemly`、`vooks`、`vdirs`，`withThemeConfig` 已处理。
+- 主题包在 `optimizeDeps.exclude` 里，Vite 不会扫描它的依赖，所以 `withThemeConfig` 显式预构建 Naive UI，否则 dev 首次打开页面要等依赖优化再整页刷新。
 - 官方 Naive UI + VitePress 示例用页面文件名当样式键，多个 `index.html` 会互相覆盖。这里改成按 markdown 相对路径对应。
 
 ## 本地测试脚手架

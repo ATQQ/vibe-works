@@ -3,10 +3,12 @@
 用 [@sugarat/vitepress-theme-vibework](https://github.com/ATQQ/vibe-works) 搭建的作品集。
 
 ```bash
-npm install
-npm run dev
-npm run build
+pnpm install
+pnpm dev
+pnpm build
 ```
+
+用 npm 也一样：`npm install`、`npm run dev`、`npm run build`。
 
 ## 怎么改
 
