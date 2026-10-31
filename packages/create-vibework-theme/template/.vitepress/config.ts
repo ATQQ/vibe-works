@@ -23,7 +23,7 @@ export default withThemeConfig({
     // 右上角图标：内置 github / x，或图片路径
     socialLinks: [
       { icon: '/logo.svg', link: 'https://sugarat.top', ariaLabel: '博客' },
-      { icon: 'github', link: 'https://github.com/ATQQ' },
+      { icon: 'github', link: 'https://github.com/ATQQ/vibe-works' },
       { icon: 'x', link: 'https://x.com/Mr_XiaoZou' },
     ],
 
