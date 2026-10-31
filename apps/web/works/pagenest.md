@@ -34,8 +34,15 @@ actions:
 - 保存前自动快照，历史 diff、版本恢复与冲突检测
 - 八套阅读配色，另含 14 套主流文档站配色
 
+
+快速使用：
 ```bash
 npx pagenest
+```
+
+指定目录：
+```bash
+npx pagenest /path/to/notes
 ```
 
 :::
