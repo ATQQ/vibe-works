@@ -70,8 +70,17 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
         ...user.vite?.server,
       },
       optimizeDeps: {
-        exclude: ['@sugarat/vitepress-theme-vibework'],
         ...user.vite?.optimizeDeps,
+        // Excluded packages are not scanned, so their deps must be listed or they get discovered on first page load.
+        include: [
+          '@sugarat/vitepress-theme-vibework > naive-ui',
+          '@sugarat/vitepress-theme-vibework > @css-render/vue3-ssr',
+          ...(user.vite?.optimizeDeps?.include ?? []),
+        ],
+        exclude: [
+          '@sugarat/vitepress-theme-vibework',
+          ...(user.vite?.optimizeDeps?.exclude ?? []),
+        ],
       },
       ssr: {
         ...user.vite?.ssr,

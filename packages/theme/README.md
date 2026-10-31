@@ -76,6 +76,7 @@ export default Theme
 
 - `markdown.config`：`:::: tabs` / `::: tab` 容器
 - `vite.ssr.noExternal`：Naive UI 相关包
+- `vite.optimizeDeps.include`：启动时预构建 Naive UI，避免首次打开页面时等待依赖优化
 - `postRender` / `transformHtml`：按 markdown 相对路径注入 SSR 样式
 
 全局组件：`HomePage`、`CatalogPage`、`VWTabs`、`VWTab`（以及可选遗留的 `ServicesPage`、`SpacePage`、`TideDemo`）。
