@@ -1,8 +1,9 @@
 {
   "name": "@sugarat/vitepress-theme-vibework",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "VitePress theme for a works portfolio catalog. Chinese-first, Naive UI, SSG-ready.",
   "license": "MIT",
+  "homepage": "https://vibework.sugarat.top/works/vibe-works",
   "repository": {
     "type": "git",
     "url": "https://github.com/ATQQ/vibe-works",

@@ -59,6 +59,8 @@ export default withThemeConfig({
         { text: '隐私政策', link: '/privacy' },
         { text: '服务条款', link: '/terms' },
       ],
+      // 右侧默认展示主题名与版本，链接到主题介绍；设为 false 关闭
+      // themeVersion: false,
     },
   },
 })

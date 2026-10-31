@@ -1,5 +1,12 @@
 # @sugarat/vitepress-theme-vibework
 
+## 0.1.1
+
+### Patch Changes
+
+- 853c74e: `withThemeConfig` 启动时预构建 Naive UI，dev 首次打开页面不再等待依赖优化与整页刷新
+- 页脚底栏右侧默认展示主题名与版本，点击跳转主题介绍；`footerBar.themeVersion: false` 可关闭
+
 ## 0.1.0
 
 首次发布。

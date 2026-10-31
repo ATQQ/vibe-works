@@ -1,4 +1,5 @@
 import type { UserConfig } from 'vitepress'
+import { homepage, name, version } from '../package.json'
 import { registerTabsContainers } from './markdown/tabs'
 
 const collectedStyles = new Map<string, string>()
@@ -65,6 +66,10 @@ export function withThemeConfig(user: UserConfig = {}): UserConfig {
     },
     vite: {
       ...user.vite,
+      define: {
+        __VW_THEME_INFO__: JSON.stringify({ label: `${name.replace(/^@[^/]+\//, '')}@${version}`, link: homepage }),
+        ...user.vite?.define,
+      },
       server: {
         fs: { allow: ['../..'] },
         ...user.vite?.server,

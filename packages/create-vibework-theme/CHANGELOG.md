@@ -1,5 +1,11 @@
 # @sugarat/create-vibework-theme
 
+## 0.1.1
+
+### Patch Changes
+
+- 模板依赖升级到 `@sugarat/vitepress-theme-vibework@^0.1.1`
+
 ## 0.1.0
 
 首次发布。

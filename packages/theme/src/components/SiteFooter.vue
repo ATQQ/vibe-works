@@ -47,7 +47,12 @@ const bar = computed(() => config.value.footerBar)
 const copyright = computed(() => asTextLink(bar.value?.copyright))
 const beian = computed(() => asTextLink(bar.value?.beian))
 const barLinks = computed(() => (Array.isArray(bar.value?.links) ? (bar.value!.links as LinkItem[]) : []))
-const showBar = computed(() => Boolean(copyright.value || beian.value || barLinks.value.length))
+const themeInfo = computed(() =>
+  bar.value?.themeVersion !== false && typeof __VW_THEME_INFO__ !== 'undefined' ? __VW_THEME_INFO__ : null,
+)
+const showBar = computed(() =>
+  Boolean(copyright.value || beian.value || barLinks.value.length || themeInfo.value),
+)
 
 const contact = computed(() => config.value.footerContact)
 const contactQr = computed(() => qrSrcFrom(contact.value?.qrImage, contact.value?.qrContent))
@@ -102,9 +107,26 @@ const showContact = computed(() => Boolean(contactQr.value))
           </a>
           <span v-else-if="beian" class="vw-footer-bar-beian">{{ beian.text }}</span>
         </div>
-        <nav v-if="barLinks.length" class="vw-footer-bar-links" aria-label="页脚链接">
-          <a v-for="link in barLinks" :key="link.link" :href="link.link">{{ link.text }}</a>
-        </nav>
+        <div class="vw-footer-bar-end">
+          <nav v-if="barLinks.length" class="vw-footer-bar-links" aria-label="页脚链接">
+            <a v-for="link in barLinks" :key="link.link" :href="link.link">{{ link.text }}</a>
+          </nav>
+          <a
+            v-if="themeInfo"
+            class="vw-footer-bar-theme"
+            :href="themeInfo.link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+              <path
+                fill="currentColor"
+                d="M12 3a9 9 0 0 0 0 18c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01a1.5 1.5 0 0 1 1.13-2.49H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8Zm-5.5 9a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3-4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Zm3 4a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z"
+              />
+            </svg>
+            {{ themeInfo.label }}
+          </a>
+        </div>
       </div>
     </div>
   </footer>

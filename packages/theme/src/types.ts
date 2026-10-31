@@ -134,6 +134,8 @@ export interface FooterBar {
   /** ICP / 备案等 */
   beian?: string | FooterTextLink
   links?: LinkItem[]
+  /** Theme name@version at the right end, linking to the theme intro; defaults to true */
+  themeVersion?: boolean
 }
 
 /**

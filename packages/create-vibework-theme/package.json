@@ -1,6 +1,6 @@
 {
   "name": "@sugarat/create-vibework-theme",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scaffold a works portfolio site with @sugarat/vitepress-theme-vibework.",
   "license": "MIT",
   "type": "module",
