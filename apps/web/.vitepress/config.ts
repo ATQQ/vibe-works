@@ -28,7 +28,7 @@ export default withThemeConfig({
     ],
     socialLinks: [
       { icon: '/logo.svg', link: 'https://sugarat.top' },
-      { icon: 'github', link: 'https://github.com/ATQQ' },
+      { icon: 'github', link: 'https://github.com/ATQQ/vibe-works' },
       { icon: 'x', link: 'https://x.com/Mr_XiaoZou' },
     ],
     footerNote: '展示做过的作品，并链到独立站点与开源仓库。',
