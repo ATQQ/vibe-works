@@ -1,6 +1,8 @@
 import type { UserConfig } from 'vitepress'
-import { homepage, name, version } from '../package.json'
+import pkg from '../package.json' with { type: 'json' }
 import { registerTabsContainers } from './markdown/tabs'
+
+const { homepage, name, version } = pkg
 
 const collectedStyles = new Map<string, string>()
 
